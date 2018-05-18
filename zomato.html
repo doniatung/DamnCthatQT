@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+Search for restaurants!
+{% endblock %}
+
+{% block content %}
+<style>
+  body {
+  background-image: url("https://amazingpict.com/wp-content/uploads/2016/09/ntDJVF7-cute-flower-background.gif");
+  }
+</style> 
+<div class="row">
+    <div class="col">
+        <form action="/restaurant_results" method="GET">
+            <h3>What kind of restaurant are you looking for?</h3>
+            <h4>None of the fields are required.</h4>
+            <div class="form-group">
+                <label for="query">Search for?</label>
+                <input type="text" class="form-control" name="query" placeholder="Anything specific you're looking for..." autofocus>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="location">City:</label>
+                        <input type="text" class="form-control" name="location" placeholder="Boston">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="radius">How far from the location (in meters)?</label>
+                        <input type="text" class="form-control" name="radius" placeholder="1000">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="max_amt">How many results? (Up to 20)</label>
+                <input type="text" class="form-control" name="max_amt" placeholder="10">
+            </div>
+            <div class="form-group">
+                <label for="cuisines">What cuisine(s)?</label>
+                <input type="text" class="form-control" name="cuisines" placeholder="Separate by commas: sandwich, italian, chinese">
+            </div>
+            <div class="form-group">
+                <p>Sort by?</p>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="sort" value="rating"> Rating
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="sort" value="cost"> Cost
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="sort" value="real_distance"> Distance
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <p> Order </p>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="order" value="asc"> Ascending
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="order" value="desc"> Descending
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary text-center">Submit</button>
+    </div>
+</div>
+</form>
+{% endblock %}
