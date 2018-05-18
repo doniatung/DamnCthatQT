@@ -5,7 +5,7 @@ P# Fin
 
 
 
-doniaT — 2018-05-18 21:30
+doniaT — 2018-05-17 21:30
 things checked when deploying the flask app
 	changed the web server in the .conf file? yup
 	installed apache2? yup
@@ -14,8 +14,13 @@ things checked when deploying the flask app
 	sudo service apache2 restart? yup 
 
 
-carolP — 2018-05-18 23:00
+carolP — 2018-05-17 23:00
 pushed the link to the (non-functional :( ) droplet site
+
+tungD -- 2018-05-19
+PIP INSTALL FLASK!!! (and making the file executable!) 
+proto0 is no longer problematic. 
+	
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
