@@ -4,6 +4,19 @@ SoftDev1 pd7
 P# Fin
 
 
+
+doniaT — 2018-05-18 21:30
+things checked when deploying the flask app
+	changed the web server in the .conf file? yup
+	installed apache2? yup
+	installed libapache2-mod-wsgi? yup
+	sudo a2enmod wsgi? yup 
+	sudo service apache2 restart? yup 
+
+
+carolP — 2018-05-18 23:00
+pushed the link to the (non-functional :( ) droplet site
+
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
