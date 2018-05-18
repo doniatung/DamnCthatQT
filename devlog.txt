@@ -19,7 +19,7 @@ pushed the link to the (non-functional :( ) droplet site
 
 tungD -- 2018-05-19
 PIP INSTALL FLASK!!! (and making the file executable!) 
-proto1 is no longer problematic. 
+proto0 is no longer problematic. 
 	
 
 /////////// Zone of Reflection \\\\\\\\\\\
