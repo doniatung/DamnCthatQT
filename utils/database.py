@@ -37,8 +37,8 @@ def close_db():
 #SETUP - TO BE RUN EACH TIME
 #------------------------------------
 def setup():
-    c= open_db()
-    stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, pts INTEGER)"
+    c= open_db() #account id?
+    stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, likes TEXT, dislikes TEXT)"
     c.execute(stmt)
 
     close_db()
@@ -57,8 +57,8 @@ def create_acc(user, pwd1, pwd2):
         obj = hashlib.sha224(pwd1)
         hash_pwd = obj.hexdigest()
 
-        command = "INSERT INTO accounts VALUES(?,?,0)"
-        c.execute(command, (user,hash_pwd)) #try to see if user exists
+        command = "INSERT INTO accounts VALUES(?,?,?,?)"
+        c.execute(command, (user,hash_pwd,"None yet","None yet")) #try to see if user exists
         #if pwds don't match
         if pwd1 != pwd2:
             db.close() #don't commit and close
