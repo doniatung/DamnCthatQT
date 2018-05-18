@@ -4,4 +4,4 @@ Team Members: Donia Tung (Project Manager), Carol Pan, Taylor Wong, Queenie Xian
 
 SoftDev2 Pd 7
 
-[proto0](http://165.227.71.95/) has a great many issues.
+[proto0](http://165.227.71.95/) has NO MORE issues!
