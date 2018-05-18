@@ -22,6 +22,10 @@ PIP INSTALL FLASK!!! (and making the file executable!)
 proto0 is no longer problematic. 
 	
 
+carolP — 2018-05-18 13:16
+uploaded/created basic files
+account making and authenticating (needs to be tested)
+
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
