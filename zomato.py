@@ -2,7 +2,7 @@
 
 
 import json
-#import requests
+import requests
 
 f = open('./.secret_key.txt', 'rU')
 ZOMATO_KEY = f.read() 
@@ -41,5 +41,17 @@ def restaurant_search(query, location, radius, max_amt,
     except HTTPError:
         return None
     return restaurants
+
+
+def find_location(query, max_amt=1):
+    '''Return the Zomato API information about a location.'''
+    url = ZOMATO_URL + "locations"
+    if max_amt < 1:
+        return []
+    params = {'query': query,
+              'count': max_amt}
+    req = request.get(url, headers=ZOMATO_HEADER, params=params)
+    locs = req.json()
+    return locs['location_suggestions']
 
 
