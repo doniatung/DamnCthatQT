@@ -29,6 +29,10 @@ account making and authenticating (needs to be tested)
 queenieX -- 2018-05-18 13:18
 Added zomato.py and zomato.html for restaurant search option
 
+queenieX -- 2018-05-22 13:15
+Modified zomato.py and added appropriate url routes for restuarant search option
+
+
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
