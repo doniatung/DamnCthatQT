@@ -1,11 +1,12 @@
-#Zomato.py for accessing the Zomato API
+#zomato.py for accessing the Zomato API
 
 
 import json
 import requests
 
-f = open('./.secret_key.txt', 'rU')
-ZOMATO_KEY = f.read() 
+#get the key
+f = open('../.secret_key.txt', 'rU')
+ZOMATO_KEY = json.loads(f.read())["zomato"] 
 f.close()
 
 print ZOMATO_KEY
