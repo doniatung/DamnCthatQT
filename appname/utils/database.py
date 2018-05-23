@@ -23,7 +23,7 @@ import hashlib
 #open database
 def open_db():
     global db
-    f = "data/dating.db"
+    f = "../data/dating.db" #CHANGE BACK
     db = sqlite3.connect(f, check_same_thread = False)
     return db.cursor()
 
@@ -37,10 +37,24 @@ def close_db():
 #SETUP - TO BE RUN EACH TIME
 #------------------------------------
 def setup():
-    c= open_db() #account id?
-    stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, likes TEXT, dislikes TEXT)"
+    c= open_db()
+    
+    #acc table
+    stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, zip TEXT)"
     c.execute(stmt)
-
+    #user likes (are dislikes necessary?)
+    stmt= "CREATE TABLE IF NOT EXISTS likes(user TEXT, like TEXT, PRIMARY KEY(user,like))"
+    c.execute(stmt)
+    #relationships
+    stmt= "CREATE TABLE IF NOT EXISTS ships(pairid INT UNIQUE, user1 TEXT, user2 TEXT, status TEXT, PRIMARY KEY(user1, user2))"
+    c.execute(stmt)
+    #dates
+    stmt= "CREATE TABLE IF NOT EXISTS dates(dateid INT PRIMARY KEY, pairid INT, date TEXT, FOREIGN KEY(pairid) REFERENCES ships(pairid))"
+    c.execute(stmt)
+    #images
+    stmt= "CREATE TABLE IF NOT EXISTS imgs(dateid INT, place TEXT, address TEXT, image BLOB, FOREIGN KEY(dateid) REFERENCES dates(dateid))"
+    c.execute(stmt)
+    
     close_db()
     return
 #=====================================
@@ -48,7 +62,7 @@ def setup():
 
 #CREATE AN ACCOUNT
 #-------------------------------------
-def create_acc(user, pwd1, pwd2):
+def create_acc(user, pwd1, pwd2, zipcode):
     global db
     try:
         user=user.strip().lower()
@@ -57,8 +71,8 @@ def create_acc(user, pwd1, pwd2):
         obj = hashlib.sha224(pwd1)
         hash_pwd = obj.hexdigest()
 
-        command = "INSERT INTO accounts VALUES(?,?,?,?)"
-        c.execute(command, (user,hash_pwd,"None yet","None yet")) #try to see if user exists
+        command = "INSERT INTO accounts VALUES(?,?,?)"
+        c.execute(command, (user,hash_pwd,zipcode)) #try to see if user exists
         #if pwds don't match
         if pwd1 != pwd2:
             db.close() #don't commit and close
@@ -68,6 +82,7 @@ def create_acc(user, pwd1, pwd2):
             return (True, True)
 
     except: #if user exists, code will jump here
+        db.close()
         print "Error: account cannot be created"
         return (False, False)
 
@@ -88,6 +103,7 @@ def auth(user, pwd):
         pwds = c.fetchall()
         close_db()
     except:
+        db.close()
         print "Error: authenticate call not made"
         return False #(False, False)
     if len(pwds) == 0:
@@ -100,3 +116,5 @@ def auth(user, pwd):
     else:
         return False #(False, True)
 #========================================
+
+setup()
