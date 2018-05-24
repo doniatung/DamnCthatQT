@@ -17,6 +17,23 @@ app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
 
+@app.route("/")
+def welcome():
+    return "WIP - check us out later ;)"
+
+@app.route("/signup")
+def create_acc():
+    return "WIP - check us out later ;)"
+
+@app.route("/login")
+def login():
+    return "WIP - check us out later ;)"
+
+@app.rout("/auth")
+def auth_acc():
+    return "WIP - check us out later ;)"
+
+#ZOMATO STUFF#
 @app.route("/restaurant_search", methods=["GET"])
 def rest_search():
     return render_template("zomato.html")
@@ -33,23 +50,7 @@ def restaurant_results():
     except KeyError:
         sort = 'rating'
     try:
-        order = args['order']
-    except KeyError:
-        order = 'desc'
-    if args['query'] or args['max_amt'] or len(cuisines) == 0:
-        return render_template("error.html", message="Incorrect inputs or missing inputs, please try again")
-        
-    data = zomato.restaurant_search(args['query'],
-                    args['location'],
-                    args['radius'],
-                    args['max_amt'],
-                    cuisines,
-                    sort,
-                    order)
-     
-    return render_template("zomato_results.html",
-                               rests = data['restaurants'],
-                               num = data['results_shown'])
+        order = args['order'] 
 
 
 if __name__ == "__main__":

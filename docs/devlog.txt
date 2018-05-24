@@ -4,32 +4,6 @@ SoftDev1 pd7
 P# Fin
 
 
-
-doniaT — 2018-05-17 21:30
-things checked when deploying the flask app
-	changed the web server in the .conf file? yup
-	installed apache2? yup
-	installed libapache2-mod-wsgi? yup
-	sudo a2enmod wsgi? yup 
-	sudo service apache2 restart? yup 
-
-
-carolP — 2018-05-17 23:00
-pushed the link to the (non-functional :( ) droplet site
-
-tungD -- 2018-05-19
-PIP INSTALL FLASK!!! (and making the file executable!) 
-proto0 is no longer problematic. 
-	
-
-carolP — 2018-05-18 13:16
-uploaded/created basic files
-account making and authenticating (needs to be tested)
-
-queenieX -- 2018-05-18 13:18
-Added zomato.py and zomato.html for restaurant search option
-
-
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
@@ -63,6 +37,41 @@ LESSONS LEARNED
 
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 
-----
-Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
-----
+
+
+doniaT — 2018-05-17 21:30
+things checked when deploying the flask app
+	changed the web server in the .conf file? yup
+	installed apache2? yup
+	installed libapache2-mod-wsgi? yup
+	sudo a2enmod wsgi? yup 
+	sudo service apache2 restart? yup 
+
+
+carolP — 2018-05-17 23:00
+pushed the link to the (non-functional :( ) droplet site
+	
+carolP — 2018-05-18 13:16
+uploaded/created basic files
+account making and authenticating (needs to be tested)
+
+queenieX -- 2018-05-18 13:18
+Added zomato.py and zomato.html for restaurant search option
+
+tungD -- 2018-05-19
+PIP INSTALL FLASK!!! (and making the file executable!) 
+proto0 is no longer problematic. 
+
+queenieX -- 2018-05-22 13:15
+Modified zomato.py and added appropriate url routes for restuarant search option
+
+carolP -- 2018-05-22 13:22
+created files to be used for apis
+
+dtung -- 2018-05-22 18:05
+changed repo to be LAMP executable
+changed out proto0 for proto1, to be used for our site
+
+carolP -- 2018-05-23 12:59
+fixed __init__.py (lines went missing)
+modified database
