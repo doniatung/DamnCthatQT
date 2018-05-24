@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Sign Up {% endblock %}
+
+{% block content %}
+<form action="/auth" method="post">
+  Username: <br>
+  <input type="text" name="user">
+  Password: <br>
+  <input type="text" name="pwd1">
+  Type your password again: <br>
+  <input type="text" name="pwd2">
+  Zipcode: <br>
+  <input type="text" name="zip">
+  <input type="submit" name="type" value="Register!">
+</form>
+{% endblock %}

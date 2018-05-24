@@ -14,6 +14,14 @@ create_acc(user,pwd1,pwd2) - sees if input is valid, adds acc to db
 auth(user,pwd) - checks if user and pwd match
     returns T/F
 
+add_interest(user,like) - adds user interest individually
+    returns T/F
+
+get_interest(user) - procures a tuple of all user interests
+    returns (T/F, tuple) -- (did it work, interests)
+
+pair_up(user1, user2) - puts two user in a relationship
+    returns T/F
 '''
 
 global db
@@ -46,10 +54,10 @@ def setup():
     stmt= "CREATE TABLE IF NOT EXISTS likes(user TEXT, like TEXT, PRIMARY KEY(user,like))"
     c.execute(stmt)
     #relationships
-    stmt= "CREATE TABLE IF NOT EXISTS ships(pairid INT UNIQUE, user1 TEXT, user2 TEXT, status TEXT, PRIMARY KEY(user1, user2))"
+    stmt= "CREATE TABLE IF NOT EXISTS ships(user1 TEXT, user2 TEXT, status INT, PRIMARY KEY(user1, user2))"
     c.execute(stmt)
     #dates
-    stmt= "CREATE TABLE IF NOT EXISTS dates(dateid INT PRIMARY KEY, pairid INT, date TEXT, FOREIGN KEY(pairid) REFERENCES ships(pairid))"
+    stmt= "CREATE TABLE IF NOT EXISTS dates(dateid INT PRIMARY KEY, pairid INT, date TEXT, FOREIGN KEY(pairid) REFERENCES ships(rowid))"
     c.execute(stmt)
     #images
     stmt= "CREATE TABLE IF NOT EXISTS imgs(dateid INT, place TEXT, address TEXT, image BLOB, FOREIGN KEY(dateid) REFERENCES dates(dateid))"
@@ -82,7 +90,6 @@ def create_acc(user, pwd1, pwd2, zipcode):
             return (True, True)
 
     except: #if user exists, code will jump here
-        db.close()
         print "Error: account cannot be created"
         return (False, False)
 
@@ -103,7 +110,6 @@ def auth(user, pwd):
         pwds = c.fetchall()
         close_db()
     except:
-        db.close()
         print "Error: authenticate call not made"
         return False #(False, False)
     if len(pwds) == 0:
@@ -117,4 +123,60 @@ def auth(user, pwd):
         return False #(False, True)
 #========================================
 
-setup()
+
+#ADD INTEREST
+#----------------------------------------
+def add_interest(user, like):
+    global db
+    try:
+        user=user.strip().lower()
+        like = like.strip().lower()
+        c = open_db()
+        
+        command = "INSERT INTO likes VALUES(?,?)"
+        c.execute(command, (user,like)) #insert
+        close_db()
+    except:
+        print "Error: like already registered"
+        return False
+    
+    return True
+#========================================
+
+#GET INTEREST (FOR EVENTBRITE)
+#----------------------------------------
+def get_interest(user)
+    global db
+    try:
+        user = user.strip().lower()
+        c = open_db()
+
+        command = "SELECT like FROM likes WHERE user=?"
+        likes = c.execute(command, (user,))
+        close_db()
+    except:
+        print "Error: could not make call on interest"
+        return (False,)
+    return (True, likes)
+#=========================================
+
+#PAIR UP
+#-----------------------------------------
+def pair_up(user1,user2)
+    global db
+    try:
+        user1 = user1.strip().lower()
+        user2 = user2.strip().lower()
+        c = open_db()
+
+        command = "INSERT INTO ships VALUES(?,?,1)" #one means relationship is 'on'
+        c.execute(command, (user1,user2))
+        c.execute(command, (user2,user1))
+        close_db()
+    except:
+        print "Relationship already exists - restarting"
+#==========================================     
+        
+
+
+#setup()

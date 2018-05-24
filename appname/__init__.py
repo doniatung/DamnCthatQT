@@ -14,7 +14,7 @@ app = Flask("__name__")
 def welcome():
     return "WIP - check us out later ;)"
 
-@app.route("/signup")
+@app.route("/register")
 def create_acc():
     return "WIP - check us out later ;)"
 
