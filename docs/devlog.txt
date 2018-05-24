@@ -64,6 +64,7 @@ proto0 is no longer problematic.
 
 queenieX -- 2018-05-22 13:15
 Modified zomato.py and added appropriate url routes for restuarant search option
+created zomato.html and zomato_results.html to display restaurant search / results data
 
 carolP -- 2018-05-22 13:22
 created files to be used for apis
@@ -75,3 +76,11 @@ changed out proto0 for proto1, to be used for our site
 carolP -- 2018-05-23 12:59
 fixed __init__.py (lines went missing)
 modified database
+
+queenieX -- 2018-05-24 1:12
+fixed __init__,py
+added in missing zomato restaurant search and result routes
+created zomato.py and appropriate functions to access zomato api and grab restaurant information
+cleaned up some files (moved into the right folders, etc.)
+
+
