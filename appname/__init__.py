@@ -19,7 +19,7 @@ app.secret_key = os.urandom(32)
 
 @app.route("/")
 def welcome():
-    return "WIP - check us out later ;)"
+    return render_template('index.html')
 
 @app.route("/register")
 def create_acc():
@@ -29,7 +29,7 @@ def create_acc():
 def login():
     return "WIP - check us out later ;)"
 
-@app.rout("/auth")
+@app.route("/auth")
 def auth_acc():
     return "WIP - check us out later ;)"
 
@@ -40,17 +40,18 @@ def rest_search():
 
 @app.route("/restaurant_results", methods=["GET"])
 def restaurant_results():
-    args = request.args
-    if args['cuisines']:
-        cuisines = args['cuisines'].split(',')
-    else:
-        cuisines = []
-    try:
-        sort = args['sort']
-    except KeyError:
-        sort = 'rating'
-    try:
-        order = args['order'] 
+    # args = request.args
+    # if args['cuisines']:
+    #     cuisines = args['cuisines'].split(',')
+    # else:
+    #     cuisines = []
+    # try:
+    #     sort = args['sort']
+    # except KeyError:
+    #     sort = 'rating'
+    # try:
+    #     order = args['order']
+    return
 
 
 if __name__ == "__main__":
