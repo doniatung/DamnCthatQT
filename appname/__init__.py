@@ -21,6 +21,18 @@ app.secret_key = os.urandom(32)
 def welcome():
     return render_template('index.html')
 
+@app.route('/browse')
+def browse():
+    return render_template('browse.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/account')
+def account():
+    return render_template('account.html')
+
 @app.route("/register")
 def create_acc():
     return "WIP - check us out later ;)"

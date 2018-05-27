@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="../static/css/album.css" rel="stylesheet" type='text/css'>
+{% endblock %}
+
+
+{% block title %}
+Search for restaurants!
+{% endblock %}
+
+{% block content %}
+
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<br><br><br>
+
+
+<div class="container marketing">
+  <h1 id='dark'>Upcoming Events in Your Area</h1>
+
+
+    <br>  <br>
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH1}}Heading 1</h2>
+        <p class="lead">{{eventD1}} Deets 1: Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
+        </p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <br>  <br>
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH2}}Heading 2</h2>
+        <p class="lead">{{eventD2}}Deets 2: Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
+      </p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <br>  <br>
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH3}}Heading 3</h2>
+        <p class="lead">{{eventD3}}Deets 3: Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
+        </p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+    <br>
+    <h1 id='dark'>Browse Events</h1>
+
+
+  <div class="album py-5">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">NAME {{name9}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
+                <small class="text-muted">DATE {{date1}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">NAME {{name1}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
+                <small class="text-muted">DATE {{date2}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">NAME {{name2}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                  <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
+                <small class="text-muted">DATE {{date3}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">NAME {{name3}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
+                <small class="text-muted">DATE {{date4}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">NAME {{name4}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
+                <small class="text-muted">DATE {{date5}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">NAME {{name5}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
+                <small class="text-muted">DATE {{date6}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">NAME {{name6}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
+                <small class="text-muted">DATE {{date7}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">NAME {{name7}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
+                <small class="text-muted">DATE {{date8}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">NAME {{name8}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
+                <small class="text-muted">DATE {{date9}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+
+{% endblock %}
