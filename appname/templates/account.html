@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
+{% block head%}
+<link href="../static/css/pricing.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block title %}
-Search for restaurants!
+My Account
 {% endblock %}
 
 {% block content %}
@@ -13,77 +17,137 @@ Search for restaurants!
 
 
 <div class="container marketing">
-    <h1 id='dark'>Recommended Activities</h1>
-    <br><br>
-  <!-- Three columns of text below the carousel -->
-  <div class="row">
-    <div class="col-lg-4">
-      <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-      <h2 id='light'>{{activityH1}}Heading1</h2>
-      <p>{{activityD1}}Deets1: Upon creating an account, users will answer certain questions concerning how they enjoy spending their time, and we will use this data, along with the Eventbrite API to curate a homescreen with suggestions for potential date spots.</p>
-      <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
-    </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4">
-      <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-      <h2 id='light'>{{activityH2}}Heading2</h2>
-      <p>{{activityD2}}Deets2: Upon creating an account, users will answer certain questions concerning how they enjoy spending their time, and we will use this data, along with the Eventbrite API to curate a homescreen with suggestions for potential date spots.</p>
-      <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
-    </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4">
-      <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-      <h2 id='light'>{{activityH3}}Heading3</h2>
-      <p>{{activityD3}}Deets3: Upon creating an account, users will answer certain questions concerning how they enjoy spending their time, and we will use this data, along with the Eventbrite API to curate a homescreen with suggestions for potential date spots.</p>
-      <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
-    </div><!-- /.col-lg-4 -->
-  </div><!-- /.row -->
+  <center>
+    <div class='box-shadow'>
+      <br><br>
+      <img class="rounded-circle" src="../static/images/queenie.jpg" alt="pfp" width="140" height="140">
+      <br><br>
+      <h1 id='dark'>Queenie Xiang {{name}}</h1><br>
+
+      <div class="container">
+        <div class="card-deck text-center" style='width: 300px;'>
+          <div class="card mb-4 box-shadow" style='position: right;'>
+            <div class="card-header">
+              <b>Username:</b> @qxiang {{username}}
+            </div>
+            <div class="card-header">
+              <b>Age:</b> 17 years old
+            </div>
+            <div class="card-header">
+              <b>Date Joined:</b> 04/07/2018 {{date_joined}}
+            </div>
+            <div class="card-header">
+              <b>Location:</b> 10282 {{zipcode}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="card-deck mb-3 text-center">
+          <div class="card mb-4 box-shadow" style='background-color: rgba(255, 46, 77, 0.3);'>
+            <div class="card-header">
+              <br>
+              <h2 class="display-5" style='color: white;'>Queenie and Kyle's Plant</h2>
+            </div>
+            <div class="card-body">
+              <p class="lead">Total Plant Points: 13 {{points}}</p>
+              <canvas></canvas>
+              <a href="/account" class="btn btn-lg btn-block pull-bottom btn-primary box-shadow" aria-label="Keep Browsing"; id='button3'>
+                Keep Browsing!
+              </a>
+            </div>
+          </div>
+
+          <div class="card mb-4 box-shadow bg-light">
+            <div class="card-header">
+              <br>
+              <h2 class="display-5" id='light'>Questionnaire Results</h2>
+            </div>
+            <div class="card-body">
+              <a href="/account" class="btn btn-lg btn-block btn-primary box-shadow" aria-label="Keep Browsing"; id='button3'>
+                Keep Browsing!
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="card-deck mb-3 text-center">
+
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <br>
+              <h2 class="display-5" id='dark'>Recent Dates</h2>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th style='width: 10%;'>Date</th>
+                      <th style='width: 25%;'>Activity</th>
+                      <th style='width: 15%;'>Plant Points</th>
+                      <th>Review</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>5/27/18</td>
+                      <td>Ice Skating</td>
+                      <td>5</td>
+                      <td>
+                        This is a website through which users can plan dates with their significant others, as well as functioning as a diary of sorts through which they can look through old dates. Upon creating an account, users will answer certain questions concerning how they enjoy spending their time, and we will use this data, along with the Eventbrite API to curate a homescreen with suggestions for potential date spots. Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td>5/13</td>
+                      <td>Kung Fu Tea</td>
+                      <td>2</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>4/30</td>
+                      <td>Picnic</td>
+                      <td>6</td>
+                      <td></td>
+                    </tr>
+
+                    {% for date_entry in dates %}
+                    <tr>
+                      {% for entry in date_entry %}
+                         <td>
+                          {{entry}}
+                        </td>
+                      {% endfor %}
+                    </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-  <!-- START THE FEATURETTES -->
+  </center>
 
-  <hr class="featurette-divider">
-    <h1 id='dark'>Upcoming Events in Your Area</h1>
-  </hr>
 
-  <br>  <br>
-  <div class="row featurette">
-    <div class="col-md-7">
-      <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH1}}Heading 1</h2>
-      <p class="lead">{{eventD1}} Deets 1: Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
-      </p>
-    </div>
-    <div class="col-md-5">
-      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-    </div>
-  </div>
+</div>
+<hr class="featurette-divider">
 
-  <br>  <br>
-  <div class="row featurette">
-    <div class="col-md-7 order-md-2">
-      <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH2}}Heading 2</h2>
-      <p class="lead">{{eventD2}}Deets 2: Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
-    </p>
-    </div>
-    <div class="col-md-5 order-md-1">
-      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-    </div>
-  </div>
 
-  <br>  <br>
-  <div class="row featurette">
-    <div class="col-md-7">
-      <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH3}}Heading 3</h2>
-      <p class="lead">{{eventD3}}Deets 3: Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
-      </p>
-    </div>
-    <div class="col-md-5">
-      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-    </div>
-  </div>
 
-  <hr class="featurette-divider">
 
-  <!-- /END THE FEATURETTES -->
 
-</div><!-- /.container -->
+
+
+
+
+<!-- /.container -->
 
 {% endblock %}

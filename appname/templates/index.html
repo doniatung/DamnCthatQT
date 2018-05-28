@@ -6,7 +6,9 @@
 
 #box {
  background-color: rgba(255, 255, 255, 0.97);
- border-radius: 10px
+ border-radius: 10px;
+ border-color: rgba(211, 211, 211, 0.95);
+ box-shadow: 3px 3px rgba(192,192,192,0.5);
 }
 </style>
 
@@ -18,7 +20,7 @@ Welcome!
 
 
 {% block content %}
-<div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-ride="carousel" data-interval="1000">
+<div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100" src="../static/images/restaurant.jpg" alt="Second slide">
@@ -86,80 +88,6 @@ Welcome!
   </div>
 </div>
 
-
-<!-- Marketing messaging and featurettes
-================================================== -->
-<!-- Wrap the rest of the page in another container to center all the content. -->
-
-<div class="container marketing">
-  <hr class="featurette-divider">
-    <h1 id='dark'>Recommended Activities</h1>
-    <br><br>
-  </hr>
-  <!-- Three columns of text below the carousel -->
-  <div class="row">
-    <div class="col-lg-4">
-      <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-      <h2 id='light'>{{activityH1}}Heading1</h2>
-      <p>{{activityD1}}Deets1: Upon creating an account, users will answer certain questions concerning how they enjoy spending their time, and we will use this data, along with the Eventbrite API to curate a homescreen with suggestions for potential date spots.</p>
-      <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
-    </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4">
-      <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-      <h2 id='light'>{{activityH2}}Heading2</h2>
-      <p>{{activityD2}}Deets2: Upon creating an account, users will answer certain questions concerning how they enjoy spending their time, and we will use this data, along with the Eventbrite API to curate a homescreen with suggestions for potential date spots.</p>
-      <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
-    </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4">
-      <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-      <h2 id='light'>{{activityH3}}Heading3</h2>
-      <p>{{activityD3}}Deets3: Upon creating an account, users will answer certain questions concerning how they enjoy spending their time, and we will use this data, along with the Eventbrite API to curate a homescreen with suggestions for potential date spots.</p>
-      <p><a class="btn btn-secondary" href="#" role="button" id='button2'>View details &raquo;</a></p>
-    </div><!-- /.col-lg-4 -->
-  </div><!-- /.row -->
-
-
-  <!-- START THE FEATURETTES -->
-
-  <hr class="featurette-divider">
-    <h1 id='dark'>Upcoming Events in Your Area</h1>
-  </hr>
-
-  <br>  <br>
-  <div class="row featurette">
-    <div class="col-md-7">
-      <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH1}}Heading 1</h2>
-      <p class="lead">{{eventD1}} Deets 1: Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
-      </p>
-    </div>
-    <div class="col-md-5">
-      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-    </div>
-  </div>
-
-  <br>  <br>
-  <div class="row featurette">
-    <div class="col-md-7 order-md-2">
-      <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH2}}Heading 2</h2>
-      <p class="lead">{{eventD2}}Deets 2: Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
-    </p>
-    </div>
-    <div class="col-md-5 order-md-1">
-      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-    </div>
-  </div>
-
-  <br>  <br>
-  <div class="row featurette">
-    <div class="col-md-7">
-      <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH3}}Heading 3</h2>
-      <p class="lead">{{eventD3}}Deets 3: Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
-      </p>
-    </div>
-    <div class="col-md-5">
-      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-    </div>
-  </div>
 
   <hr class="featurette-divider">
 
