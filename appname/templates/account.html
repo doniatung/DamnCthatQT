@@ -52,7 +52,9 @@ My Account
             </div>
             <div class="card-body">
               <p class="lead">Total Plant Points: 13 {{points}}</p>
-              <canvas></canvas>
+              <img class="card-img-top" src="../static/images/daisy.svg" alt="Card image cap" style='width: 150px; height: 200px'>
+              <!--canvas></canvas-->
+              <br><br>
               <a href="/account" class="btn btn-lg btn-block pull-bottom btn-primary box-shadow" aria-label="Keep Browsing"; id='button3'>
                 Keep Browsing!
               </a>
@@ -65,8 +67,15 @@ My Account
               <h2 class="display-5" id='light'>Questionnaire Results</h2>
             </div>
             <div class="card-body">
+              <p><b>Time of Day:</b> Night</p>
+              <p><b>Indoors/Outdoors:</b> Outdoors</p>
+              <p><b>Favorite Location:</b> Beach</p>
+              <p><b>Favorite Cuisine:</b> Italian</p>
+              <p><b>City/Suburbia:</b> City</p>
+              <p><b>Characteristic that Best Describes Us:</b> Adventurous</p>
+              <p><b>Favorite Music Genre:</b> Pop and Hip Hop</p>
               <a href="/account" class="btn btn-lg btn-block btn-primary box-shadow" aria-label="Keep Browsing"; id='button3'>
-                Keep Browsing!
+                Retake the Questionnaire
               </a>
             </div>
           </div>
@@ -99,6 +108,8 @@ My Account
                       <td>5</td>
                       <td>
                         This is a website through which users can plan dates with their significant others, as well as functioning as a diary of sorts through which they can look through old dates. Upon creating an account, users will answer certain questions concerning how they enjoy spending their time, and we will use this data, along with the Eventbrite API to curate a homescreen with suggestions for potential date spots. Users are able to request information about a specific kind of event/action (like dinner, concert, etc), and the site will return a list of suggestions about where to find such activity. Once a user decides they would like to plan a given event for a date, they can select it to add onto their agenda. Once the date comes to pass, the user can upload pictures from that day or write a bit about how the date went.
+                        <p><a class="btn btn-secondary" href="#" role="button" id='button2'>Edit Review &raquo;</a></p>
+
                       </td>
 
                     </tr>
@@ -106,13 +117,17 @@ My Account
                       <td>5/13</td>
                       <td>Kung Fu Tea</td>
                       <td>2</td>
-                      <td></td>
+                      <td>
+                        <p><a class="btn btn-secondary" href="#" role="button" id='button2'>Edit Review &raquo;</a></p>
+                      </td>
                     </tr>
                     <tr>
                       <td>4/30</td>
                       <td>Picnic</td>
                       <td>6</td>
-                      <td></td>
+                      <td>
+                        <p><a class="btn btn-secondary" href="#" role="button" id='button2'>Edit Review &raquo;</a></p>
+                      </td>
                     </tr>
 
                     {% for date_entry in dates %}
