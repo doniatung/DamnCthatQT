@@ -99,6 +99,9 @@ taylorW -- 2018-05-27 13:22
 new functions for pages in __init__.py; added about page, about page, browse page;
 and small changes to other pages
 
-taylorW -- 2018-05-25 22:26
+taylorW -- 2018-05-28 22:26
 jazzed up account page, added more css files (will probably get rid of some later),
 more minor changes to other pages
+
+taylorW -- 2018-05-29 10:13
+dummy data for presentation
