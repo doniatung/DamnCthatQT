@@ -21,6 +21,39 @@ app.secret_key = os.urandom(32)
 def welcome():
     return render_template('index.html')
 
+@app.route("/login_redirect")
+def login_redirect():
+        #If logout: 
+        if "submit" in request.args and request.args["submit"] == "Logout":
+		session["username"] = ""
+		flash("You logged out.")
+                return redirect("/")
+            
+        #If logged in:   
+        if "username" in request.args and session.get('username'):
+                return redirect("/")
+
+        username = ""
+        password = ""
+
+        #Grabbing user info: 
+        if "user" in request.args and "pass" in request.args:
+		username = request.args["user"].lower()
+		password = request.args["pass"]
+
+        #If not correct login info:
+        '''
+        if not database.verify_user(username, password):
+                error = "Incorrect information. Please try again."
+                return render_template("error.html", error=error)
+        else: 
+              session["username"] = username
+	      return redirect("/")
+
+        '''
+        return redirect("/")
+
+
 @app.route('/browse')
 def browse():
     return render_template('browse.html')
@@ -35,7 +68,7 @@ def account():
 
 @app.route("/register")
 def create_acc():
-    return "WIP - check us out later ;)"
+    return render_template("signup.html")
 
 @app.route("/login")
 def login():
