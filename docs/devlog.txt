@@ -105,3 +105,7 @@ more minor changes to other pages
 
 taylorW -- 2018-05-29 10:13
 dummy data for presentation
+
+queenieX -- 2018-05-29 13:16
+Added in missing section for resturant_result in __init__.py
+Worked on sign up page for users 
