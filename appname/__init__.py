@@ -23,20 +23,20 @@ def welcome():
 
 @app.route("/login_redirect")
 def login_redirect():
-        #If logout: 
+        #If logout:
         if "submit" in request.args and request.args["submit"] == "Logout":
 		session["username"] = ""
 		flash("You logged out.")
                 return redirect("/")
-            
-        #If logged in:   
+
+        #If logged in:
         if "username" in request.args and session.get('username'):
                 return redirect("/")
 
         username = ""
         password = ""
 
-        #Grabbing user info: 
+        #Grabbing user info:
         if "user" in request.args and "pass" in request.args:
 		username = request.args["user"].lower()
 		password = request.args["pass"]
@@ -46,7 +46,7 @@ def login_redirect():
         if not database.verify_user(username, password):
                 error = "Incorrect information. Please try again."
                 return render_template("error.html", error=error)
-        else: 
+        else:
               session["username"] = username
 	      return redirect("/")
 
@@ -61,6 +61,11 @@ def browse():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/view')
+def view():
+    return render_template('view.html')
+
 
 @app.route('/account')
 def account():
@@ -86,12 +91,12 @@ def rest_search():
 @app.route("/restaurant_results", methods=["GET"])
 def restaurant_results():
     args = request.args
-    
+
     if args['cuisines']:
         cuisines = args['cuisines'].split(',')
     else:
         cuisines = []
-        
+
     try:
         sort = args['sort']
     except KeyError:
@@ -106,11 +111,11 @@ def restaurant_results():
         print args['query']
         print args['max_amt']
         print len(cuisines)
-        
+
         return render_template("error.html", message="Incorrect inputs or missing inputs, please try again")
-      
+
     '''
-    
+
     data = zomato.restaurant_search(args['query'],
                     args['location'],
                     args['radius'],
@@ -120,7 +125,7 @@ def restaurant_results():
                     order)
 
     print data
-     
+
     return render_template("zomato_results.html",
                            rests = data['restaurants'],
                            num = data['results_shown'])

@@ -7,15 +7,18 @@ Search
 {% block content %}
 <br><br><br>
 
-
 <div class="container marketing">
+  <center>
   <h1 id='dark'>Search</h1>
+</center>
 
   <div class="row">
       <div class="col">
           <form action="/restaurant_results" method="GET">
-              <h3>What kind of restaurant are you looking for?</h3>
-              <small>* None of the fields are required.</small>
+            <center>
+              <h3 id='light'>What kind of restaurant are you looking for?</h3>
+              <small><text style='color: red;'>*</text> None of the fields are required.</small>
+            </center>
               <br><br>
               <div class="form-group">
                   <label for="query">Search for?</label>
