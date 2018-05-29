@@ -52,18 +52,45 @@ def rest_search():
 
 @app.route("/restaurant_results", methods=["GET"])
 def restaurant_results():
-    # args = request.args
-    # if args['cuisines']:
-    #     cuisines = args['cuisines'].split(',')
-    # else:
-    #     cuisines = []
-    # try:
-    #     sort = args['sort']
-    # except KeyError:
-    #     sort = 'rating'
-    # try:
-    #     order = args['order']
-    return
+    args = request.args
+    
+    if args['cuisines']:
+        cuisines = args['cuisines'].split(',')
+    else:
+        cuisines = []
+        
+    try:
+        sort = args['sort']
+    except KeyError:
+        sort = 'rating'
+    try:
+        order = args['order']
+    except KeyError:
+        order = 'desc'
+
+    '''
+    if args['query'] or args['max_amt'] or len(cuisines) == 0:
+        print args['query']
+        print args['max_amt']
+        print len(cuisines)
+        
+        return render_template("error.html", message="Incorrect inputs or missing inputs, please try again")
+      
+    '''
+    
+    data = zomato.restaurant_search(args['query'],
+                    args['location'],
+                    args['radius'],
+                    args['max_amt'],
+                    cuisines,
+                    sort,
+                    order)
+
+    print data
+     
+    return render_template("zomato_results.html",
+                           rests = data['restaurants'],
+                           num = data['results_shown'])
 
 
 if __name__ == "__main__":
