@@ -113,3 +113,6 @@ Worked on sign up page for users
 
 taylorW -- 2018-05-29 18:59
 made view details page with hardcoded data, added to about page, minor general edits
+
+taylorW -- 2018-05-29 19:52
+modified format of restaurant search pages
