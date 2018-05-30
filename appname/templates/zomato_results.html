@@ -1,52 +1,75 @@
 {% extends "base.html" %}
 
+{% block head %}
+<link href="../static/css/pricing.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block title %}
 Restaurant Results
 {% endblock %}
 
 {% block content %}
-<style>
-  body {
-  background-image: url("http://www.paperbirchwine.com/wp-content/uploads/2017/04/Cute-Background-969.jpg");
-  color: #CC9966;
-  }
-  a:link {
-  color: #886655
-  }
-  a:visited {
-  color: #48271E
-  }
-  h3 {
-  color: black
-  }
-  
-</style>
+<br><br><br>
 
-<center>
-<div class="row">
-    <div class="col">
-        <h3>Restaurants Fitting Your Criteria:</h3>
-        <p>Results: {{ num }}</p>
-        {% for rest in rests %}
-        {% set rest = rest['restaurant'] %}
-	<ul>
-          <h4><a href="/restaurant?rest_id={{ rest['id'] }}"> {{ rest['name'] }} </a></h4>
-	</ul>
-        <ul>
-            Address: {{ rest['location']['address'] }} <br>
-            Avg Price for Two: {{ rest['currency'] }}{{ rest['average_cost_for_two'] }} <br>
-            Rating: {{ rest['user_rating']['aggregate_rating'] }} <br>
-            {{ rest['user_rating']['votes'] }} votes<br>
-      
-        </ul>
-        {% endfor %}
+<div class="container marketing">
+
+<!-- /.container -->
+
+  <div class="container">
+    <div class="card-deck text-center">
+      <div class="card mb-4 box-shadow" style='position: right;'>
+        <div class="card-header">
+          <br>
+          <h1 id='dark'>
+            Restaurants Fitting Your Criteria:
+          </h1>
+          <h5>Results: {{ num }}</h5>
+          <br><br>
+          <center>
+
+            {% for rest in rests %}
+
+            <div class="card-deck text-center" style='width:500px;'>
+              <div class="card mb-4 box-shadow" style='position: right;'>
+                <div class="card-header" style='border-radius: 5px; margin:20px;'>
+
+                  {% set rest = rest['restaurant'] %}
+                  <h2><a href="/restaurant?rest_id={{ rest['id'] }}" id='light'> {{ rest['name'] }} </a></h2>
+                    <p><b>Address</b><br>{{ rest['location']['address'] }}</p>
+                    <p><b>Average Price for Two</b><br>{{ rest['currency'] }}{{ rest['average_cost_for_two'] }} </p>
+                    <p><b>Rating</b><br>{{ rest['user_rating']['aggregate_rating'] }}
+                    <p id='dark'>
+                      <small>
+                        <img src="../static/images/vote.jpg" alt="Generic placeholder image" width="20" height="25 ">
+                        {{ rest['user_rating']['votes'] }} votes
+                      </small></p>
+
+                    </p>
+
+
+                </div>
+              </div>
+            </div>
+
+
+
+            {% endfor %}
+
+          </center>
+          <br>
+
+        </div>
+      </div>
     </div>
+  </div>
+
+  <hr class="featurette-divider">
+
 </div>
+
 <div class="row">
     <a href="/restaurant_search" class="btn btn-warning btn-lg" role="button">
         Back
     </a>
 </div>
-
-<center>
 {% endblock %}

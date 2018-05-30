@@ -105,3 +105,14 @@ more minor changes to other pages
 
 taylorW -- 2018-05-29 10:13
 dummy data for presentation
+
+queenieX -- 2018-05-29 13:16
+Added in missing section for resturant_result in __init__.py
+Added in a section on for homepage to recognize signed in users / users that just signed out -- isn't completely working yet
+Worked on sign up page for users
+
+taylorW -- 2018-05-29 18:59
+made view details page with hardcoded data, added to about page, minor general edits
+
+taylorW -- 2018-05-29 19:52
+modified format of restaurant search pages
