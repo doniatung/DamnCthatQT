@@ -8,7 +8,7 @@
 ''' List of methods
 setup() - sets up db
 
-create_acc(user,pwd1,pwd2) - sees if input is valid, adds acc to db
+create_acc(user,pwd1,pwd2,zip) - sees if input is valid, adds acc to db
     returns (T/F, T/F) -- (is username valid, is password valid)
 
 auth(user,pwd) - checks if user and pwd match

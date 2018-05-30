@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="../static/css/pricing.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}
+Search for restaurants!
+{% endblock %}
+
+{% block content %}
+
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<br><br><br>
+
+<div class="container marketing">
+
+<!-- /.container -->
+
+  <div class="container">
+    <div class="card-deck text-center">
+      <div class="card mb-4 box-shadow" style='position: right;'>
+        <div class="card-header">
+          <br>
+          <h1 id='dark'>
+            About Us
+            <img src="../static/images/heart.png" alt="Generic placeholder image" width="40" height="40">
+          </h1>
+          <br>
+          <p class="lead text-left">
+            This is a website through which users can plan dates with their significant others,
+            as well as functioning as a diary of sorts through which they can look through old dates.
+            <br><br>
+            Upon creating an account, users will answer certain questions concerning how they enjoy
+            spending their time, and we will use this data, along with the Eventbrite API to curate a
+            homescreen with suggestions for potential date spots. Users are able to request information
+            about a specific kind of event/action (like dinner, concert, etc), and the site will return
+            a list of suggestions about where to find such activity. Once a user decides they would like
+            to plan a given event for a date, they can select it to add onto their agenda. Once the date
+            comes to pass, the user can upload pictures from that day or write a bit about how the date
+            went.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <br><br><br>
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <center>
+    <h1 id='dark'>Meet Our Team!</h1>
+  </center>
+  <br><br>
+
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="card-deck text-center">
+          <div class="card mb-4 box-shadow" style='position: right;'>
+            <div class="card-header">
+              <center>
+                <img class="rounded-circle" src="../static/images/team/donia.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h3 id='light'>Donia Tung</h3>
+                <p><b>Project Manager</b></p>
+                <br><br>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.col-lg-4 -->
+
+      <div class="col-lg-3">
+        <div class="card-deck text-center">
+          <div class="card mb-4 box-shadow" style='position: right;'>
+            <div class="card-header">
+              <center>
+                <img class="rounded-circle" src="../static/images/team/c.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h3 id='light'>Carol Pan</h3>
+                <p><b>Back-End:</b><br>d3, Diary, Eventbrite API</p>
+                <br>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.col-lg-4 -->
+
+      <div class="col-lg-3">
+        <div class="card-deck text-center">
+          <div class="card mb-4 box-shadow" style='position: right;'>
+            <div class="card-header">
+              <center>
+                <img class="rounded-circle" src="../static/images/team/q.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h3 id='light'>Queenie Xiang</h3>
+                <p><b>Back-End:</b><br>Databases, Agenda, Zomato API</p>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.col-lg-4 -->
+
+      <div class="col-lg-3">
+        <div class="card-deck text-center">
+          <div class="card mb-4 box-shadow" style='position: right;'>
+            <div class="card-header">
+              <center>
+                <img class="rounded-circle" src="../static/images/team/t.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h3 id='light'>Taylor Wong</h3>
+                <p><b>Front-End</b></p>
+                <br><br>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.col-lg-4 -->
+
+    </div>
+
+
+
+
+  <hr class="featurette-divider">
+
+</div>
+
+{% endblock %}

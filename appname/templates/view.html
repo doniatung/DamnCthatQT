@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+#box {
+ background-color: rgba(255, 255, 255, 0.97);
+ border-radius: 10px;
+ border-color: rgba(211, 211, 211, 0.95);
+ box-shadow: 3px 3px rgba(192,192,192,0.5);
+}
+</style>
+<link href="../static/css/album.css" rel="stylesheet" type='text/css'>
+{% endblock %}
+
+
+{% block title %}
+Search for restaurants!
+{% endblock %}
+
+{% block content %}
+
+<!--
+<div class="card-deck text-center" style='width: 300px;'>
+  <div class="card mb-4 box-shadow" style='position: right;'>
+    <div class="card-header">
+
+
+
+    </div>
+  </div>
+</div>
+-->
+
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<br>
+
+
+<div class="container marketing">
+
+  <div class="container">
+    <div class="card-deck text-center">
+      <div class="card mb-4 box-shadow" style='position: right;'>
+        <div class="card-header">
+          <br><br>
+
+          <div class="card-deck text-center">
+            <div class="card mb-4 box-shadow" style='position: right;'>
+              <div class="card-header">
+
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src="../static/images/pizza.jpg" alt="Second slide">
+                  <div class="carousel-caption d-none d-md-block box-shadow">
+                    <div class="jumbotron jumbotron-fluid" id="box"  style='border-radius: 10px;'> <!-- rgba(255, 182, 193, 0.8) -->
+                      <div class="container">
+                        <h1 id='dark'>The Museum of Pizza{{event_name}}</h1>
+                        <small class="lead" id='light'>
+                          by The Museum of Pizza{{host}}
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="featurette-divider">
+
+          <div class="row featurette">
+            <div class="col-md-7">
+              <div class="card-deck text-center">
+                <div class="card mb-4 box-shadow" style='position: right;'>
+                  <div class="card-header">
+                    <h2 class="featurette-heading" style="font-size:35px; margin-top: 20px;" id='light'>Description</h2>
+
+                    <p class="lead text-left" style='margin: 30px;'>{{description}}
+                      Pizza is the undisputed, democratically-elected champion of food. The snackable luxury whose freedom is universal.
+                      <br><br>
+                      Like a best friend, pizza is fun, reliable, consistent, flexible and unselfish.
+                      Always here for us when we’re hungry, happy, hurried or hungover. Pizza does not judge;
+                      it is always for the people, by the people - and that’s why we love it.
+                      <br><br>
+                      In fact, we love pizza so much we created #MoPi, the museum for it. A place to take amazing
+                      photos and absorb every wonder of our larger-than-life, immersive installations. A space to
+                      bask in multi-sensory, psychedelic pizza joy.
+                      <br><br>
+                      A true destination to celebrate our love of the slice, together.
+                      <br><br>
+                      The Museum of Pizza is the world's first and only immersive art experience celebrating pizza, coming to NYC this October 2018.
+                      <br><br>
+                      A portion of every ticket purchased will be donated by the Museum to provide a free meal for a family in need.
+                      Every ticket holder is entitled to one free slice at or outside the venue (and the Museum will do its best to
+                      make additional pizza available), but, to be clear, this is a Museum dedicated to art, culture and fun, not just eating.
+
+
+                    </p>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <div class="card mb-4 bg-light" style='box-shadow: 2px 2px 5px rgba(192,192,192,0.3);'>
+                <div class="card-header">
+                  <br>
+                  <h2 class="display-5" id='light'>Details</h2>
+                </div>
+                <div class="card-body" >
+                  <p><b>DATE</b><br>10/13/2018 {{date}}</p>
+                  <p><b>LOCATION<br></b>Secret Location {{location}}</p>
+                  <p><b>TIME<br></b>10:00AM - 7:00PM {{time}}</p>
+                </div>
+              </div>
+
+              <div class="card mb-4 box-shadow" style='background-color: rgba(255, 46, 77, 0.3); box-shadow: 2px 2px 5px rgba(192,192,192,0.3);'>
+                <div class="card-header">
+                  <br>
+                  <h2 class="display-5" style='color: white;'>Plant Points: +3{{points}}</h2>
+                  <br>
+                  <a href="/browse" class="btn btn-lg btn-block pull-bottom btn-primary box-shadow" aria-label="Keep Browsing"; id='button3'>
+                    Add to Agenda!
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <hr class="featurette-divider">
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+
+{% endblock %}

@@ -5,9 +5,8 @@ import json
 import requests
 
 #get the key
-f = open('../.secret_key.txt', 'rU')
-ZOMATO_KEY = json.loads(f.read())["zomato"] 
-f.close()
+ZOMATO_KEY = "36077c95f8ef79684f3dbbfb542bbe20"
+
 
 print ZOMATO_KEY
 
