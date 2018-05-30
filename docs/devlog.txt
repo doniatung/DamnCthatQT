@@ -78,7 +78,7 @@ fixed __init__.py (lines went missing)
 modified database
 
 queenieX -- 2018-05-24 13:12
-fixed __init__,py
+fixed __init__.py
 added in missing zomato restaurant search and result routes
 created zomato.py and appropriate functions to access zomato api and grab restaurant information
 cleaned up some files (moved into the right folders, etc.)
@@ -87,4 +87,8 @@ carolP -- 2018-05-24 13:18
 added more db fxns
 set up html pages for login and signup, not connected to flask
 
+carolP -- 2018-05-26 19:22
+prelim check shows accounts work
+modified db
+basic eventbrite stuff, urllib calls
 
