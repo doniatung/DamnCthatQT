@@ -35,9 +35,9 @@ Restaurant Results
 
                   {% set rest = rest['restaurant'] %}
                   <h2><a href="/restaurant?rest_id={{ rest['id'] }}" id='light'> {{ rest['name'] }} </a></h2>
-                    <p><b>Address:</b><br>{{ rest['location']['address'] }}</p>
-                    <p><b>Average Price for Two:</b><br>{{ rest['currency'] }}{{ rest['average_cost_for_two'] }} </p>
-                    <p><b>Rating:</b><br>{{ rest['user_rating']['aggregate_rating'] }}
+                    <p><b>Address</b><br>{{ rest['location']['address'] }}</p>
+                    <p><b>Average Price for Two</b><br>{{ rest['currency'] }}{{ rest['average_cost_for_two'] }} </p>
+                    <p><b>Rating</b><br>{{ rest['user_rating']['aggregate_rating'] }}
                     <p id='dark'>
                       <small>
                         <img src="../static/images/vote.jpg" alt="Generic placeholder image" width="20" height="25 ">
