@@ -10,7 +10,7 @@ import urllib2
 import requests
 import json
 import os
-import zomato
+from utils import zomato
 
 #App instantiation
 app = Flask(__name__)
@@ -95,5 +95,5 @@ def restaurant_results():
 
 if __name__ == "__main__":
     #when we change to lamp stack, change debug to False
-    app.debug = True
+    app.debug = False
     app.run()
