@@ -22,15 +22,15 @@ get_interest(user) - procures a tuple of all user interests
 
 NOTE: THE FOLLOWING METHODS HAVE NOT BEEN COMPLETED
 get_users() - gets all users
-    returns (list of users)
+    returns (T/F, list of users)
 
-start_plan(user1, user2, date) - adds the pairing of user1 and user2 into the db
-    returns (T/F, dateid)
+connect(origUser, otherUser) - adds the pairing of user1 and user2 into the db
+    returns T/F
 
 check_plans(user) - gets all the dates that user is planning from dates table
     returns ((plans user starts),(plans user is invited to))
 
-confirm_plan(dateid, user) - invited user agrees to date
+respond(shipid, T/F) - invited user agrees to date
     returns T/F
 
 add_event(dateid, event, location, time) - adds event to date
@@ -72,8 +72,10 @@ def setup():
     #user likes (are dislikes necessary?)
     stmt= "CREATE TABLE IF NOT EXISTS likes(user TEXT, like TEXT, PRIMARY KEY(user,like))"
     c.execute(stmt)
+    stmt = "CREATE TABLE IF NOT EXISTS ships(shipid INT PRIMARY KEY, user1 TEXT, user2 TEXT, status INT)"
+    c.execute(stmt)
     #dates
-    stmt= "CREATE TABLE IF NOT EXISTS dates(dateid INT PRIMARY KEY, user1 TEXT, user2 TEXT, date TEXT, status INT)"
+    stmt= "CREATE TABLE IF NOT EXISTS dates(dateid INT PRIMARY KEY, shipid INT, date TEXT, status INT)"
     c.execute(stmt)
     #planning
     stmt = "CREATE TABLE IF NOT EXISTS planner(dateid INT, event TEXT, location TEXT,time TEXT)"
@@ -179,7 +181,45 @@ def get_interest(user):
         return (False,)
     return (True, likes)
 #=========================================  
-        
+
+
+#GET USERS
+#-----------------------------------------
+def get_users():
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT user FROM accounts"
+        users = c.execute(command)
+        close_db()
+    except:
+        print "Error: could not get list of users"
+        return (False,)
+    return (True, users)
+#==========================================
+
+#CONNECT USERS (USER1 initiates connection)
+#------------------------------------------
+def connect(user1,user2):
+    global db
+    try:
+        c = open_db()
+
+        command = "INSERT INTO ships VALUES(?,?,0)"
+        c.execute(command, (user1,user2))
+        close_db()
+    except:
+        print "Error: could not connect users"
+        return False
+    return True
+#===========================================
+
+#USER2 RESPONDS
+#-------------------------------------------
+def respond(shipid):
+    return
+
 #setup()
 
 
