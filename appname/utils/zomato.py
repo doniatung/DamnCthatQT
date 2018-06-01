@@ -4,8 +4,14 @@
 import json
 import requests
 
+
+f = open('./static/.secret_key.txt', 'rU')
+keys = json.loads(f.read())
+f.close()
+
+
 #get the key
-ZOMATO_KEY = "36077c95f8ef79684f3dbbfb542bbe20"
+ZOMATO_KEY = keys['zomato']
 
 
 print ZOMATO_KEY
@@ -50,7 +56,7 @@ def find_location(query, max_amt=1):
         return []
     params = {'query': query,
               'count': max_amt}
-    req = request.get(url, headers=ZOMATO_HEADER, params=params)
+    req = requests.get(url, headers=ZOMATO_HEADER, params=params)
     locs = req.json()
     return locs['location_suggestions']
 

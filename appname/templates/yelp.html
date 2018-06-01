@@ -1,0 +1,31 @@
+<html>
+  <body>
+    <form action="/yelp_results" method="GET">
+      <center>
+              <h3 id='light'>What kind of restaurant are you looking for?</h3>
+              <small><text style='color: red;'>*</text> None of the fields are required.</small>
+            </center>
+              <br><br>
+              <div class="form-group">
+                  <label for="term">Search for?</label>
+                  <input type="text" class="form-control box-shadow" name="term" placeholder="Anything specific you're looking for..." autofocus>
+              </div>
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-8">
+                          <label for="location">City:</label>
+                          <input type="text" class="form-control box-shadow" name="location" placeholder="Boston">
+                      </div>
+                      <div class="col-md-4">
+                          <label for="search_limit">How many results?</label>
+                          <input type="text" class="form-control box-shadow" name="search_limit" placeholder="100">
+                      </div>
+                  </div>
+              </div>
+              
+              <button type="submit" class="btn btn-secondary" id='button2' >Submit</button>
+
+    </form>
+  </body>
+</html>
+    

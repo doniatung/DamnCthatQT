@@ -11,6 +11,10 @@ import requests
 import json
 import os
 from utils import zomato
+from utils import yelp
+#from jinja2 import jinja2.ext.do
+
+d = {} 
 
 #App instantiation
 app = Flask(__name__)
@@ -83,6 +87,35 @@ def login():
 def auth_acc():
     return "WIP - check us out later ;)"
 
+
+@app.route("/yelp_search", methods=["GET"])
+def yelp_search():
+    return render_template("yelp.html")
+
+@app.route("/yelp_results", methods=["GET"])
+def yelp_results():
+    global d 
+    args = request.args
+    term = args["term"]
+    location = args["location"]
+    search_limit = args["search_limit"]
+
+    data = yelp.search(term, location, search_limit)
+
+    #print data 
+    #print data["businesses"]
+    #print "\n TESTING \n"
+
+    businesses = data["businesses"][0]
+
+    #print "\ntest:"
+    #print d
+    #print "\n"
+    #print "name" 
+    #print d["name"] 
+        
+    return render_template("yelp_results.html", data = businesses) 
+    
 #ZOMATO STUFF#
 @app.route("/restaurant_search", methods=["GET"])
 def rest_search():
