@@ -12,6 +12,7 @@ import json
 import os
 from utils import zomato
 from utils import yelp
+
 #from jinja2 import jinja2.ext.do
 
 d = {} 
@@ -106,15 +107,15 @@ def yelp_results():
     #print data["businesses"]
     #print "\n TESTING \n"
 
-    businesses = data["businesses"][0]
+    businesses = data["businesses"]
 
     #print "\ntest:"
     #print d
     #print "\n"
     #print "name" 
-    #print d["name"] 
+    #print d["name"]
         
-    return render_template("yelp_results.html", data = businesses) 
+    return render_template("yelp_results.html", data = businesses, search_limit=search_limit) 
     
 #ZOMATO STUFF#
 @app.route("/restaurant_search", methods=["GET"])

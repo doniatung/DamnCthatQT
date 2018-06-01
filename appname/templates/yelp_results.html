@@ -1,14 +1,100 @@
-<html>
-  <body>
-    {{data["rating"]}}
-    <br>
-    {{data["name"]}}
-    <br>
-    {% for entry in data %}
-    {{data[entry]}}
-    {% endfor %}
-    
-    <br>
- 
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% block head %}
+<link href="../static/css/pricing.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}
+Restaurant Results
+{% endblock %}
+
+{% block content %}
+<br><br><br>
+
+<div class="container marketing">
+
+<!-- /.container -->
+
+<div class="container">
+    <div class="card-deck text-center">
+      <div class="card mb-4 box-shadow" style='position: right;'>
+        <div class="card-header">
+	  
+          <br>
+          <h1 id='dark'> What's on Your Menu Today? </h1>
+	  <div class="side-picture" style='position: right;'>
+	    <img src="./static/images/pear.jpg">
+	  </div>
+	  
+          <h5>Results: {{ search_limit }}</h5>
+          <br><br>
+          <center>
+
+            {% for entry in data %}
+
+            <div class="card-deck text-center" style='width:500px;'>
+              <div class="card mb-4 box-shadow" style='position: right;'>
+                <div class="card-header" style='border-radius: 5px; margin:20px;'>
+
+                  {% set business = data[loop.index0] %} <br>
+		   
+                  <h2> {{ business['name'] }} </h2>
+
+		  <p id='dark'>
+                    <small>
+                      <a href={{business["url"]}}>
+			 <img src={{business["image_url"]}} alt="Generic placeholder image" width="300" height="250"> </img>
+		      </a>
+		    </small>
+		  </p>
+		  		  
+		  <p><b>About this restaurant:</b><br>
+		    {% set keywords = business["categories"] %}
+		    {% for one in keywords %}
+		    {{one["title"]}}
+		    <br>
+		    {% endfor %}    
+		  </p>
+		  
+		  <p><b>Price</b><br>
+		    {{ business["price"] }}
+		  </p>
+                  
+		  {% set address = business["location"]["display_address"] %}
+
+		  <p><b>Address</b><br>
+		    {{ address|join(", ") }}
+		  </p>
+		  
+		  <p><b>Phone Numer:</b><br>
+		    {{ business["display_phone"] }}
+		  </p>
+                 
+                  <p><b>Rating</b><br>
+		    {{ business["rating"] }} ({{business["review_count"]}} ratings)
+		  </p>
+		  
+		</div>
+	      </div>
+	    </div>
+
+            {% endfor %}
+
+          </center>
+          <br>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+</div>
+
+<div class="row">
+    <a href="/restaurant_search" class="btn btn-warning btn-lg" role="button">
+        Back
+    </a>
+</div>
+{% endblock %}
