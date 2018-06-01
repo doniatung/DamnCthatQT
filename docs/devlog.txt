@@ -124,4 +124,11 @@ modified format of restaurant search pages
 queenieX -- 2018-05-31 20:21
 Added yelp.py, yelp.html and yelp_results.html, as well as the appropriate functions in __init__.py to acces the Yelp API and return requested data.
 
+queenieX -- 2018-06-01 15:27
+Added to yelp.results.html to filter out and show the appropriate data (looping works well now!) 
+Simplified yelp.html
+Added a picture to yelp_results.html but isn't formatted properly yet
+Rerouted search in the navbar to go to yelp search instead of zomato
+
+
 
