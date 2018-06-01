@@ -120,3 +120,8 @@ made view details page with hardcoded data, added to about page, minor general e
 
 taylorW -- 2018-05-29 19:52
 modified format of restaurant search pages
+
+queenieX -- 2018-05-31 20:21
+Added yelp.py, yelp.html and yelp_results.html, as well as the appropriate functions in __init__.py to acces the Yelp API and return requested data.
+
+
