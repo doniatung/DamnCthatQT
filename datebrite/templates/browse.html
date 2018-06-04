@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="../static/css/album.css" rel="stylesheet" type='text/css'>
+{% endblock %}
+
+
+{% block title %}
+Search for restaurants!
+{% endblock %}
+
+{% block content %}
+
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<br>
+
+
+<div class="container marketing">
+
+  <div class="container">
+    <div class="card-deck text-center">
+      <div class="card mb-4 box-shadow" style='position: right;'>
+        <div class="card-header">
+          <br><br>
+          <h1 id='dark'>Upcoming Events in Your Area</h1>
+
+          <div class="row featurette">
+            <div class="col-md-7" >
+              <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH1}}The Museum of Pizza</h2>
+              <small class="lead" style='color:rgba(192,192,192,1)'>
+                10/13/18{{date}}
+              </small>
+              <p class="lead text-left" style='margin-right:30px; margin-left:30px;'>{{eventD1}}
+                Pizza is the undisputed, democratically-elected champion of food. The snackable luxury whose freedom is universal.
+                <br><br>
+                Like a best friend, pizza is fun, reliable, consistent, flexible and unselfish. Always here for us when we’re hungry,
+                happy, hurried or hungover. Pizza does not judge; it is always for the people, by the people - and that’s why we love it.
+                <br><br>
+                <a href="/view" class="btn btn-lg btn-block btn-primary box-shadow" aria-label="Keep Browsing"; id='button3'>
+                  View Details
+                </a>
+              </p>
+            </div>
+            <div class="col-md-5">
+              <br><br><br><br><br><br><br>
+              <img class="featurette-image img-fluid mx-auto box-shadow" src="../static/images/pizza.jpg" alt="pizza" style='overflow: auto;'>
+            </div>
+          </div>
+
+          <br>  <br>
+          <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+              <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH2}}SophFrosh Semi-Formal!</h2>
+              <small class="lead" style='color:rgba(192,192,192,1)'>
+                06/08/18{{date}}
+              </small>
+              <p class="lead text-left" style='margin-right:30px; margin-left:30px;'>{{eventD2}}
+                June 8th marks our biggest and best event of the year: the SophFrosh Semi-Formal!
+                This year's theme is tropical; join the SophFrosh caucuses in the third floor gym at 6pm
+                (right after SOS) for a fantastic night of food, friends, and fun. Bring your pals, your best dance moves,
+                and optional tropical-themed styles. Attire is semiformal so this means it’s time to pull out your fun &
+                summery dresses, and button-down shirts. Floral clothing suggested, but not necessary!
+                <br><br>
+                <a href="/view" class="btn btn-lg btn-block btn-primary box-shadow" aria-label="Keep Browsing"; id='button3'>
+                  View Details
+                </a>
+              </p>
+            </div>
+            <div class="col-md-5 order-md-1">
+              <br><br><br><br><br><br><br>
+              <img class="featurette-image img-fluid mx-auto box-shadow" src="../static/images/hsm.jpg" alt="Generic placeholder image">
+            </div>
+          </div>
+
+          <br><br>
+          <div class="row featurette">
+            <div class="col-md-7">
+              <h2 class="featurette-heading" style="font-size:35px;" id='light'>{{eventH3}}Williamsburg Bites Brooklyn Food Tour</h2>
+              <small class="lead" style='color:rgba(192,192,192,1)'>
+                05/30/18{{date}}
+              </small>
+              <p class="lead text-left" style='margin-right:30px; margin-left:30px;'>{{eventD3}}
+                Williamsburg, one of Brooklyn's most popular and exciting neighborhoods, straddles old and new.
+                You can enjoy the lively arts, music, and boutique scene here, chill in numerous cafes, dine in some very good restaurants — and soak up the unique vibe.
+                <br><br>
+                <a href="/view" class="btn btn-lg btn-block btn-primary box-shadow" aria-label="Keep Browsing"; id='button3'>
+                  View Details
+                </a>
+              </p>
+            </div>
+            <div class="col-md-5">
+              <br><br>
+              <img class="featurette-image img-fluid mx-auto box-shadow" src="../static/images/food.png" alt="Generic placeholder image">
+            </div>
+          </div>
+
+          <hr class="featurette-divider">
+          <br>
+          <h1 id='dark'>Browse Events</h1>
+
+
+        <div class="album py-5">
+          <div class="container">
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top img-thumbnail" src="../static/images/thumb/korean.jpg" alt="Card image cap" style='width: 300px; height: 200px'>
+                  <div class="card-body">
+                    <p class="card-text">Korean Cooking Class - Summer at Home {{name9}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p><a class="btn btn-secondary" href="/view" role="button" id='button2'>View details &raquo;</a></p>
+                      <small class="text-muted">06/02/18 {{date1}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top img-thumbnail" src="../static/images/thumb/fest.jpg" alt="Card image cap" style='width: 300px; height: 200px'>
+                  <div class="card-body">
+                    <p class="card-text">MUXICIBITION - SUMMER MUSIC FESTIVAL {{name1}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p><a class="btn btn-secondary" href="/view" role="button" id='button2'>View details &raquo;</a></p>
+                      <small class="text-muted">08/11/2018 {{date2}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top img-thumbnail" src="../static/images/thumb/ice.jpg" alt="Card image cap" style='width: 300px; height: 200px'>
+                  <div class="card-body">
+                    <p class="card-text">Ice Cream Social {{name2}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p><a class="btn btn-secondary" href="/view" role="button" id='button2'>View details &raquo;</a></p>
+                      <small class="text-muted">06/30/18 {{date3}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top img-thumbnail" src="../static/images/thumb/choco.jpg" alt="Card image cap" style='width: 300px; height: 200px'>
+                  <div class="card-body">
+                    <p class="card-text">Choco-Story New York {{name3}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p><a class="btn btn-secondary" href="/view" role="button" id='button2'>View details &raquo;</a></p>
+                      <small class="text-muted">05/30/18 {{date4}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top img-thumbnail" src="../static/images/thumb/swing.jpg" alt="Card image cap" style='width: 300px; height: 200px'>
+                  <div class="card-body">
+                    <p class="card-text">The Harlem Swinging Dance & Jazz History Bike Tour {{name4}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p><a class="btn btn-secondary" href="/view" role="button" id='button2'>View details &raquo;</a></p>
+                      <small class="text-muted">06/10/18 {{date5}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top img-thumbnail" src="../static/images/thumb/wotless.jpg" alt="Card image cap" style='width: 300px; height: 200px'>
+                  <div class="card-body">
+                    <p class="card-text">I AM WOTLESS VENDOR {{name5}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p><a class="btn btn-secondary" href="/view" role="button" id='button2'>View details &raquo;</a></p>
+                      <small class="text-muted">06/02/18 {{date6}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top img-thumbnail" src="../static/images/thumb/ceramics.jpg" alt="Card image cap" style='width: 300px; height: 200px'>
+                  <div class="card-body">
+                    <p class="card-text">Introductory Ceramics Workshop {{name6}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p><a class="btn btn-secondary" href="/view" role="button" id='button2'>View details &raquo;</a></p>
+                      <small class="text-muted">06/12/18 {{date7}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top img-thumbnail" src="../static/images/thumb/lego.jpg" alt="Card image cap" style='width: 300px; height: 200px'>
+                  <div class="card-body">
+                    <p class="card-text">Saturday Art Workshops: LEGO® Brick Portraits {{name7}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p><a class="btn btn-secondary" href="/view" role="button" id='button2'>View details &raquo;</a></p>
+                      <small class="text-muted">06/09/18 {{date8}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top img-thumbnail" src="../static/images/thumb/fair.jpg" alt="Card image cap" style='width: 300px; height: 200px'>
+                  <div class="card-body">
+                    <p class="card-text">Shop Harlem Live Harlem Artisanal Fair {{name8}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p><a class="btn btn-secondary" href="/view" role="button" id='button2'>View details &raquo;</a></p>
+                      <small class="text-muted">06/23/18 {{date9}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+
+{% endblock %}

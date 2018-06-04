@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/heart.ico">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/output.css" rel="stylesheet" type='text/css'>
+    <link href="../static/css/carousel.css" rel="stylesheet" type='text/css'>
+    <link href="../static/css/jumbotron.css" rel="stylesheet" type='text/css'>
+
+
+    <!-- Fonts and Icons -->
+    <link href="../static/css/open-iconic.css" rel="stylesheet">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+    {% block head %} {% endblock %}
+
+    <title>
+      {% block title %} {% endblock %}
+      | DamnCthatQT
+    </title>
+
+    <style>
+
+      #dark {
+        color: rgba(255, 46, 77, 1);
+      }
+      #light {
+        color: rgba(255, 46, 77, 0.5);
+      }
+
+      #button1 {
+        color: rgba(255, 46, 77, 1);
+        border-color: rgba(255, 46, 77, 1);
+      }
+
+      #button2 {
+        background-color:rgba(255, 46, 77, 0.5);
+        border-color: rgba(255, 46, 77, 0);
+      }
+
+      #button3 {
+        background-color:rgba(255, 46, 77, 0.9);
+        border-color: rgba(255, 46, 77, 0);
+        position: bottom;
+        box-shadow: 2px 2px 5px rgba(192,192,192,0.5);
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top" style='background-color: rgba(255, 255, 255, 0.9); height: 50px; border-color: rgba(211, 211, 211, 0.95); box-shadow: 1px 1px 1px rgba(192,192,192,0.5);'> <!-- #ffe700  rgba(255, 182, 193, 1)-->
+      <a class="navbar-brand" href="/" id='dark'>DamnCthatQT</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
+
+        <ul class="navbar-nav pull-left">
+          <li class="nav-item">
+            <a class="nav-link" href="/browse" id='light'>Browse Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/yelp_search" id="light">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about" id="light">About Us</a>
+          </li>
+          <li style='color: white;'> hi</li> <!-- for spacing -->
+        </ul>
+
+        <a href="/account" class="btn btn-outline-light pull-left" aria-label="My Account" id='button1'>
+          <span class="oi oi-person" title="My Account" aria-hidden="true" id='dark'></span> My Account
+        </a>
+      </div>
+
+    </nav>
+
+    <!-- Alerts -->
+    <!-- <center>
+      {% if good == True %}
+      <div class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+      {% endif %}
+
+      {% if good == False %}
+      <div class="alert alert-danger" role="alert">
+        {{ message }}
+      </div>
+      {% endif %}
+
+      {% if warning == True %}
+      <div class="alert alert-warning" role="alert">
+        {{ message }}
+      </div>
+      {% endif %}
+
+  	</center> -->
+
+    <main role="main">
+
+    {% block content %}
+    <!-- ENTER EACH PAGES CONTENT-->
+    {% endblock %}
+
+    </main>
+
+
+    <footer class="footer">
+      <!-- footer -->
+      <footer class="footer">
+        <center>
+          <a href="/" class="btn btn-outline pull-left" aria-label="Home" style='color:rgba(255, 46, 77, 1); border-color:rgba(255, 46, 77, 0.6)'>
+            <span class="oi oi-home" title="Home" aria-hidden="true"></span>
+          </a>
+        </center>
+      </footer>
+
+      <br>
+
+      <footer class="mastfoot">
+        <div class="inner">
+          <center>
+          <p style='color:rgba(255, 46, 77, 0.6);'><small >Powered by <a href="https://github.com/doniatung/DamnCthatQT">DamnCthatQT</a>.</small></p>
+        </center>
+        </div>
+      </footer>
+
+      <!-- scripts and stuff -->
+      <script src="https://d3js.org/d3.v3.min.js"></script>
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+      <script src="../static/js/script.js"></script>
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../static/js/jquery-slim.min.js"><\/script>')</script>
+      <script src="../static/js/popper.min.js"></script>
+      <script src="../static/js/bootstrap.min.js"></script>
+      <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+      <script src="../static/js/holder.min.js"></script>
+
+  </body>
+</html>
