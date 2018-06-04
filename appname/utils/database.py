@@ -20,17 +20,28 @@ add_interest(user,like) - adds user interest individually
 get_interest(user) - procures a tuple of all user interests
     returns (T/F, tuple) -- (did it work, interests)
 
-NOTE: THE FOLLOWING METHODS HAVE NOT BEEN COMPLETED
 get_users() - gets all users
     returns (T/F, list of users)
 
 connect(origUser, otherUser) - adds the pairing of user1 and user2 into the db
     returns T/F
 
-check_plans(user) - gets all the dates that user is planning from dates table
-    returns ((plans user starts),(plans user is invited to))
+check_connect(user) - gets all the dates that user is planning from dates table
+    returns ((ppl user likes),(ppl who likes user))
 
-respond(shipid, T/F) - invited user agrees to date
+respond(shipid, val) - invited user agrees to date (val = 1) or rejects (val = -1)
+    returns T/F
+
+get_relationship(user1, user2) - check the relationship between two users (if there is one)
+    returns [(sqlite_entry), (planned_dates)
+            (shipid, user1, user2, status (-1=off,1=on,0=tbd), pts)
+            (dateid, shipid, date, status)
+
+#note: the following is not done
+start_date(shipid) - starts a date for this pair
+    returns T/F
+
+complete_date(dateid) - ends date for this pair
     returns T/F
 
 add_event(dateid, event, location, time) - adds event to date
@@ -72,7 +83,8 @@ def setup():
     #user likes (are dislikes necessary?)
     stmt= "CREATE TABLE IF NOT EXISTS likes(user TEXT, like TEXT, PRIMARY KEY(user,like))"
     c.execute(stmt)
-    stmt = "CREATE TABLE IF NOT EXISTS ships(shipid INT PRIMARY KEY, user1 TEXT, user2 TEXT, status INT)"
+    #pairing up
+    stmt = "CREATE TABLE IF NOT EXISTS ships(shipid INT PRIMARY KEY, user1 TEXT, user2 TEXT, status INT, points INT)"
     c.execute(stmt)
     #dates
     stmt= "CREATE TABLE IF NOT EXISTS dates(dateid INT PRIMARY KEY, shipid INT, date TEXT, status INT)"
@@ -199,6 +211,7 @@ def get_users():
     return (True, users)
 #==========================================
 
+
 #CONNECT USERS (USER1 initiates connection)
 #------------------------------------------
 def connect(user1,user2):
@@ -215,11 +228,66 @@ def connect(user1,user2):
     return True
 #===========================================
 
+
+#CHECK CONNECTIONS (WHO USER IS CONNECTED TO)
+#-------------------------------------------
+def check_connect(user):
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT * FROM ships WHERE user1 = ? AND status != -1"
+        lst1 = list(c.execute(command, (user1,)))
+        command = "SELECT * FROM ships WHERE user2 = ? AND status = 1"
+        lst2 = list(c.execute(command, (user1,)))
+        command = "SELECT * FROM ships WHERE user2 = ? AND status = 0"
+        lst3 = list(c.execute(command, (user1,)))
+        close_db()
+    except:
+        print "Error: could not pull connections"
+        return []
+    return [lst1.extend(lst2), lst3]
+#===========================================
+
+
 #USER2 RESPONDS
 #-------------------------------------------
-def respond(shipid):
-    return
+def respond(shipid, val):
+    global db
+    try:
+        c = open_db()
 
+        command = "UPDATE ships SET status = ? WHERE shipid = ?"
+        c.execute(command, (val, shipid))
+        close_db()
+
+    except:
+        print "Error: could not update relationship"
+        return False
+    return True
+#============================================
+
+
+#FIND RELATIONSHIP BETWEEN TWO USERS
+#--------------------------------------------
+def get_relationship(user1,user2):
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT * FROM ships WHERE user1 = ? AND status != -1"
+        lst1 = list(c.execute(command, (user1,)))
+        command = "SELECT * FROM ships WHERE user2 = ? AND status = 1"
+        lst2 = list(c.execute(command, (user1,)))
+    except:
+        print "Error: could not get details"
+        return []
+    return lst1 + lst2
+#==============================================
+
+def add_event(dateid, event, location, time):
+    global db
+    return
 #setup()
 
 
