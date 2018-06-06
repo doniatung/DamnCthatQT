@@ -33,12 +33,11 @@ respond(shipid, val) - invited user agrees to date (val = 1) or rejects (val = -
     returns T/F
 
 get_relationship(user1, user2) - check the relationship between two users (if there is one)
-    returns [(sqlite_entry), (planned_dates)
+    returns [(sqlite_entry), (planned_dates)]
             (shipid, user1, user2, status (-1=off,1=on,0=tbd), pts)
             (dateid, shipid, date, status)
 
-#note: the following is not done
-start_date(shipid) - starts a date for this pair
+start_date(shipid, text) - starts a date for this pair
     returns T/F
 
 complete_date(dateid) - ends date for this pair
@@ -51,6 +50,8 @@ get_plan(dateid) - gets all the events listed in the date
 
 add_image(dateid, imgfile, location) - adds image to db under appropriate event
     returns T/F
+
+get_imgs(dateid)
 '''
 
 global db
@@ -279,15 +280,125 @@ def get_relationship(user1,user2):
         lst1 = list(c.execute(command, (user1,)))
         command = "SELECT * FROM ships WHERE user2 = ? AND status = 1"
         lst2 = list(c.execute(command, (user1,)))
+        ship = lst1.extend(lst2)[0]
+        shipid = ship[1]
+        command = "SELECT * FROM dates WHERE shipid =?"
+        dates = c.execute(command, (shipid,))
     except:
         print "Error: could not get details"
         return []
-    return lst1 + lst2
+    return [ship, dates]
 #==============================================
 
+#----------------------------------------------
+def update_pts(dateid, points):
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT pts FROM ships WHERE dateid = ?"
+        current_pts = c.execute(command, (dateid,))[0]
+        new_pts = current_pts + points
+        
+        command = "UPDATE ships SET pts = ? WHERE dateid = ?"
+        c.execute(command, (dateid, new_pts))
+        
+    except:
+        print "Error: could not update pts"
+        return False
+    return True
+#==============================================
+
+
+#----------------------------------------------
+def start_date(shipid,date):
+    global db
+    try:
+        c = open_db()
+
+        command = "INSERT INTO dates VALUES(?,?,1)"
+        c.execute(command, (shipid, date))
+        
+    except:
+        print "Error: could not start date"
+        return False
+    return True
+#===============================================
+
+#-----------------------------------------------
+def complete_date(dateid):
+    global db
+    try:
+        c = open_db()
+
+        command = "UPDATE dates SET status = 0 WHERE dateid = ?"
+        c.execute(command, (dateid,))
+        
+    except:
+        print "Error: could not end date"
+        return False
+    return True
+#==============================================
+
+#----------------------------------------------
 def add_event(dateid, event, location, time):
     global db
-    return
+    try:
+        c = open_db()
+
+        command = "INSERT INTO planner VALUES(?,?,?,?)"
+        c.execute(command, (dateid,event,location,time))
+        
+    except:
+        print "Error: could not add event"
+        return False
+    return True
+#===============================================
+
+#-----------------------------------------------
+def get_plan(dateid):
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT * FROM planner WHERE dateid=?"
+        events = c.execute(command, (dateid,))
+        
+    except:
+        print "Error: could not get events"
+        return []
+    return events
+#===============================================
+
+#-----------------------------------------------
+def add_image(dateid, imgfile, location):
+    global db
+    try:
+        c = open_db()
+
+        command = "INSERT INTO imgs VALUES(?,?,?)"
+        c.execute(command, (dateid, imgfile, location))
+    except:
+        print "Error: could not add image"
+        return False
+    return True
+#================================================
+
+
+#------------------------------------------------
+def get_imgs(dateid):
+    global db
+    try:
+        c= open_db()
+
+        command = "SELECT * FROM imgs WHERE dateid=?"
+        imgs= c.execute(command, (dateid,))
+    except:
+        print "Error: could not get images"
+        return []
+    return imgs
+#================================================
+
 #setup()
 
 
