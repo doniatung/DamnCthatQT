@@ -17,9 +17,11 @@ BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 DEFAULT_TERM = 'dinner'
 DEFAULT_LOCATION = 'New York, NY'
 DEFAULT_SEARCH_LIMIT = 5
+DEFAULT_SORT_BY = "best_match"
+DEFAULT_PRICE = "1,2,3"
 
 
-def search(term, location, search_limit):
+def search(term, location, search_limit, sort_by, price):
 
     message = ""
     
@@ -35,11 +37,20 @@ def search(term, location, search_limit):
         search_limit = DEFAULT_SEARCH_LIMIT
         message = "No search limit given, using default search limit 5" 
 
+    if sort_by == None:
+        sort_by = DEFAULT_SORT_BY
+        message = "No sorting arrangement given, using default best match sorting"
+    if price == None:
+        price = DEFAULT_PRICE
+        message = "No price range given, using default all price range"
     
     url_params = {
         'term': term.replace(' ', '+'),
         'location': location.replace(' ', '+'),
-        'limit': search_limit
+        'limit': search_limit,
+        'sort_by': sort_by,
+        'price': price
+        
     }
     
     url = API_HOST+SEARCH_PATH
@@ -101,8 +112,4 @@ def query_api(term, location):
     response = get_business(API_KEY, business_id)
 
     print(u'Result for business "{0}" found:'.format(business_id))
-    #pprint.pprint(response, indent=2)
-
-
-
-#search("restaurant", "New York", "5")
+    

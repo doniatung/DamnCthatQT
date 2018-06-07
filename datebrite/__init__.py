@@ -100,8 +100,14 @@ def yelp_results():
     term = args["term"]
     location = args["location"]
     search_limit = args["search_limit"]
+    sort_by = args["sort"]
+    price = args["price"]
+    if "home" in args: 
+        use_home_address = args["home"]
+        if use_home_address == "true":
+            location = '''RETRIEVE HOME ADDRESS'''
 
-    data = yelp.search(term, location, search_limit)
+    data = yelp.search(term, location, search_limit, sort_by, price)
 
     #print data 
     #print data["businesses"]
@@ -167,5 +173,5 @@ def restaurant_results():
 
 if __name__ == "__main__":
     #when we change to lamp stack, change debug to False
-    app.debug = False
+    app.debug = True
     app.run()
