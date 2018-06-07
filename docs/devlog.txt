@@ -138,3 +138,8 @@ changed files to reflect appname switch to datebrite. should be ready for deploy
 
 carolP -- 2018-06-06 13:07
 finished db functions (not tested!)
+
+queenieX -- 2018-06-06 21:55
+Added new searching criteria to search page (can search by price, more sorts, and not just restaurants now)
+Added new images to certain pages to make it more interesting
+Form on Sign Up page isn't centered yet 
