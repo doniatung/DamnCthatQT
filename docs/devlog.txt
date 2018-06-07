@@ -130,5 +130,11 @@ Simplified yelp.html
 Added a picture to yelp_results.html but isn't formatted properly yet
 Rerouted search in the navbar to go to yelp search instead of zomato
 
+carolP -- 2018-06-04 13:12
+worked on db functions (not tested)
 
+doniaT -- 2018-06-04 13:19
+changed files to reflect appname switch to datebrite. should be ready for deployment on the stuycs server
 
+carolP -- 2018-06-06 13:07
+finished db functions (not tested!)
