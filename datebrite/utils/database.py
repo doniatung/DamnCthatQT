@@ -5,8 +5,8 @@
 
 
 
-''' List of methods
-setup() - sets up db
+''' List of methods [x] marks issues
+setup() - sets up db 
 
 create_acc(user,pwd1,pwd2,zip) - sees if input is valid, adds acc to db
     returns (T/F, T/F) -- (is username valid, is password valid)
@@ -85,16 +85,16 @@ def setup():
     stmt= "CREATE TABLE IF NOT EXISTS likes(user TEXT, like TEXT, PRIMARY KEY(user,like))"
     c.execute(stmt)
     #pairing up
-    stmt = "CREATE TABLE IF NOT EXISTS ships(shipid INT PRIMARY KEY, user1 TEXT, user2 TEXT, status INT, points INT)"
+    stmt = "CREATE TABLE IF NOT EXISTS ships(shipid INTEGER PRIMARY KEY, user1 TEXT, user2 TEXT, status INTEGER, pts INTEGER)"
     c.execute(stmt)
     #dates
-    stmt= "CREATE TABLE IF NOT EXISTS dates(dateid INT PRIMARY KEY, shipid INT, date TEXT, status INT)"
+    stmt= "CREATE TABLE IF NOT EXISTS dates(dateid INTEGER PRIMARY KEY, date TEXT, shipid INTEGER, status INTEGER)"
     c.execute(stmt)
     #planning
-    stmt = "CREATE TABLE IF NOT EXISTS planner(dateid INT, event TEXT, location TEXT,time TEXT)"
+    stmt = "CREATE TABLE IF NOT EXISTS planner(dateid INTEGER, event TEXT, location TEXT, time TEXT)"
     c.execute(stmt)
     #images
-    stmt= "CREATE TABLE IF NOT EXISTS imgs(dateid INT, place TEXT, address TEXT, image BLOB)"
+    stmt= "CREATE TABLE IF NOT EXISTS imgs(dateid INTEGER, place TEXT, address TEXT, image BLOB)"
     c.execute(stmt)
 
     close_db()
@@ -178,6 +178,20 @@ def add_interest(user, like):
     return True
 #========================================
 
+
+#setup()
+
+
+'''testing'''
+#print create_acc("crashley", "bubba", "bubba", 10000)
+#print auth("crashley", "bobba")
+#print auth("crashley", "bubba")
+'''
+likes = ["happiness", "butter", "butterflies", "good mac and cheese", "sing", "song", "sing"]
+for entry in likes:
+    add_interest("crashley", entry)
+'''
+    
 #GET INTEREST (FOR EVENTBRITE)
 #----------------------------------------
 def get_interest(user):
@@ -187,13 +201,28 @@ def get_interest(user):
         c = open_db()
 
         command = "SELECT like FROM likes WHERE user=?"
-        likes = c.execute(command, (user,))
+        res = c.execute(command, (user,))
+        likes = []
+        for obj in res:
+            likes.append(obj[0])
         close_db()
     except:
         print "Error: could not make call on interest"
-        return (False,)
+        return (False,likes)
     return (True, likes)
 #=========================================  
+
+setup()
+'''more testing
+ash = get_interest("crashley")
+if (ash[0]):
+    print ash[1]
+    open_db()
+    for obj in ash[1]:
+        print obj
+else:
+    print ash[0]
+'''
 
 
 #GET USERS
@@ -204,14 +233,27 @@ def get_users():
         c = open_db()
 
         command = "SELECT user FROM accounts"
-        users = c.execute(command)
+        res = c.execute(command)
+        users = []
+        for user in res:
+            users.append(user[0])
         close_db()
     except:
         print "Error: could not get list of users"
-        return (False,)
-    return (True, users)
+        return (False,users)
+    return (True,users)
 #==========================================
 
+#testing
+'''
+create_acc("annie", "woooo", "woooo", 11223)
+create_acc("Stuy", "vesant", "vesant", 11228)
+create_acc("notStuy", "HS", "HS", 11220)
+'''
+'''
+res = get_users()
+print res[1]
+'''
 
 #CONNECT USERS (USER1 initiates connection)
 #------------------------------------------
@@ -220,7 +262,7 @@ def connect(user1,user2):
     try:
         c = open_db()
 
-        command = "INSERT INTO ships VALUES(?,?,0)"
+        command = "INSERT INTO ships VALUES(NULL,?,?,0,0)"
         c.execute(command, (user1,user2))
         close_db()
     except:
@@ -228,6 +270,8 @@ def connect(user1,user2):
         return False
     return True
 #===========================================
+#print connect("crashley","annie")
+
 
 
 #CHECK CONNECTIONS (WHO USER IS CONNECTED TO)
@@ -399,14 +443,4 @@ def get_imgs(dateid):
     return imgs
 #================================================
 
-#setup()
 
-
-'''testing'''
-#print create_acc("crashley", "bubba", "bubba", 10000)
-#print auth("crashley", "bobba")
-'''
-likes = ["happiness", "butter", "butterflies", "good mac and cheese", "sing", "song", "sing"]
-for entry in likes:
-    add_interest("crashley", entry)
-'''
