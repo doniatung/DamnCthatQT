@@ -25,9 +25,11 @@ get_users() - gets all users
 
 connect(origUser, otherUser) - adds the pairing of user1 and user2 into the db
     returns T/F
-
+    BUT: user2 has to agree to be official
+    
 check_connect(user) - gets all the dates that user is planning from dates table
-    returns ((ppl user likes),(ppl who likes user))
+    returns {"confirmed": lst of ships, "pending": lst of ships}
+    (id, user1, user2, status(whether user2 agrees), pts)
 
 respond(shipid, val) - invited user agrees to date (val = 1) or rejects (val = -1)
     returns T/F
@@ -48,6 +50,8 @@ add_event(dateid, event, location, time) - adds event to date
 
 get_plan(dateid) - gets all the events listed in the date
 
+
+#below not tested
 add_image(dateid, imgfile, location) - adds image to db under appropriate event
     returns T/F
 
@@ -271,7 +275,9 @@ def connect(user1,user2):
     return True
 #===========================================
 #print connect("crashley","annie")
-
+#print connect("crashely","gator")
+#print connect("crashley","idkanymore")
+#print connect("annabeth","crashley")
 
 
 #CHECK CONNECTIONS (WHO USER IS CONNECTED TO)
@@ -280,20 +286,30 @@ def check_connect(user):
     global db
     try:
         c = open_db()
-
-        command = "SELECT * FROM ships WHERE user1 = ? AND status != -1"
-        lst1 = list(c.execute(command, (user1,)))
-        command = "SELECT * FROM ships WHERE user2 = ? AND status = 1"
-        lst2 = list(c.execute(command, (user1,)))
-        command = "SELECT * FROM ships WHERE user2 = ? AND status = 0"
-        lst3 = list(c.execute(command, (user1,)))
+        command = "SELECT * FROM ships WHERE user1=? AND status=1"
+        res = c.execute(command, (user,))
+        lst1 = []
+        for obj in res:
+            lst1.append(obj)
+        command = "SELECT * FROM ships WHERE user2=? AND status=1"
+        res = c.execute(command, (user,))
+        lst2 = []
+        for obj in res:
+            lst2.append(obj)
+        command = "SELECT * FROM ships WHERE user2=? AND status=0"
+        res = c.execute(command, (user,))
+        lst3 = []
+        for obj in res:
+            lst3.append(obj)
+        lst1.extend(lst2)
         close_db()
     except:
         print "Error: could not pull connections"
         return []
-    return [lst1.extend(lst2), lst3]
+    return {"confirmed":lst1,"pending": lst3}
 #===========================================
 
+#print check_connect("crashley")
 
 #USER2 RESPONDS
 #-------------------------------------------
@@ -312,6 +328,7 @@ def respond(shipid, val):
     return True
 #============================================
 
+#print respond(3,1)
 
 #FIND RELATIONSHIP BETWEEN TWO USERS
 #--------------------------------------------
@@ -320,39 +337,55 @@ def get_relationship(user1,user2):
     try:
         c = open_db()
 
-        command = "SELECT * FROM ships WHERE user1 = ? AND status != -1"
-        lst1 = list(c.execute(command, (user1,)))
-        command = "SELECT * FROM ships WHERE user2 = ? AND status = 1"
-        lst2 = list(c.execute(command, (user1,)))
-        ship = lst1.extend(lst2)[0]
-        shipid = ship[1]
+        command = "SELECT * FROM ships WHERE user1 = ? AND user2 = ?"
+        res1 = c.execute(command, (user1,user2))
+        lst1 = []
+        for obj in res1:
+            lst1.append(obj)
+        command = "SELECT * FROM ships WHERE user2 = ? AND user1 = ?"
+        res2 = c.execute(command, (user1,user2))
+        for obj in res2:
+            lst1.append(obj)
+        ship = lst1[0]
+        shipid = ship[0]
+
         command = "SELECT * FROM dates WHERE shipid =?"
-        dates = c.execute(command, (shipid,))
+        res = c.execute(command, (shipid,))
+        dates = []
+        for obj in res:
+            dates.append(obj)
+
     except:
         print "Error: could not get details"
         return []
     return [ship, dates]
 #==============================================
 
+#print get_relationship("crashley","idkanymore")
+
 #----------------------------------------------
-def update_pts(dateid, points):
+def update_pts(shipid, points):
     global db
     try:
         c = open_db()
 
-        command = "SELECT pts FROM ships WHERE dateid = ?"
-        current_pts = c.execute(command, (dateid,))[0]
-        new_pts = current_pts + points
+        command = "SELECT pts FROM ships WHERE shipid = ?"
+        res = c.execute(command, (shipid,))
+        current_pts = []
+        for obj in res:
+            current_pts.append(obj)
+        new_pts = current_pts[0][0] + points
+        print new_pts
         
-        command = "UPDATE ships SET pts = ? WHERE dateid = ?"
-        c.execute(command, (dateid, new_pts))
-        
+        command = "UPDATE ships SET pts = ? WHERE shipid = ?"
+        c.execute(command, (new_pts,shipid))
+        close_db()
     except:
         print "Error: could not update pts"
         return False
     return True
 #==============================================
-
+#print update_pts(3, 20)
 
 #----------------------------------------------
 def start_date(shipid,date):
@@ -360,14 +393,17 @@ def start_date(shipid,date):
     try:
         c = open_db()
 
-        command = "INSERT INTO dates VALUES(?,?,1)"
-        c.execute(command, (shipid, date))
-        
+        command = "INSERT INTO dates VALUES(NULL,?,?,1)"
+        c.execute(command, (date, shipid))
+
+        close_db()
     except:
         print "Error: could not start date"
         return False
     return True
 #===============================================
+#print start_date(3, "Wednesday")
+
 
 #-----------------------------------------------
 def complete_date(dateid):
@@ -377,12 +413,15 @@ def complete_date(dateid):
 
         command = "UPDATE dates SET status = 0 WHERE dateid = ?"
         c.execute(command, (dateid,))
-        
+
+        close_db()
     except:
         print "Error: could not end date"
         return False
     return True
 #==============================================
+#print complete_date(1);
+
 
 #----------------------------------------------
 def add_event(dateid, event, location, time):
@@ -392,12 +431,16 @@ def add_event(dateid, event, location, time):
 
         command = "INSERT INTO planner VALUES(?,?,?,?)"
         c.execute(command, (dateid,event,location,time))
-        
+        close_db()
     except:
         print "Error: could not add event"
         return False
     return True
 #===============================================
+
+#print add_event(2,"skiing", "park", "sometime")
+#print add_event(2,"this", "WILL", "be more official, promise")
+#print add_event(2,"movies", "amc", "sunday afternoon")
 
 #-----------------------------------------------
 def get_plan(dateid):
@@ -406,22 +449,28 @@ def get_plan(dateid):
         c = open_db()
 
         command = "SELECT * FROM planner WHERE dateid=?"
-        events = c.execute(command, (dateid,))
+        res = c.execute(command, (dateid,))
+        events = []
+        for obj in res:
+            events.append(obj)
         
     except:
         print "Error: could not get events"
         return []
     return events
 #===============================================
+#print get_plan(2)
+
 
 #-----------------------------------------------
-def add_image(dateid, imgfile, location):
+def add_image(dateid, imgfile, place, address):
     global db
     try:
         c = open_db()
 
-        command = "INSERT INTO imgs VALUES(?,?,?)"
-        c.execute(command, (dateid, imgfile, location))
+        command = "INSERT INTO imgs VALUES(?, ?,?,?)"
+        c.execute(command, (dateid, place, address, imgfile))
+        close_db()
     except:
         print "Error: could not add image"
         return False
@@ -436,7 +485,10 @@ def get_imgs(dateid):
         c= open_db()
 
         command = "SELECT * FROM imgs WHERE dateid=?"
-        imgs= c.execute(command, (dateid,))
+        res= c.execute(command, (dateid,))
+        imgs = []
+        for obj in res:
+            imgs.append(obj)
     except:
         print "Error: could not get images"
         return []
