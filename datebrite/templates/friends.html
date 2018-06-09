@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} "Friends" {% endblock %}
+
+{% block content %}
+<!-- this thing is for viewing all the users in your friends list-->
+Confirmed: <br>
+{% for user in lst["confirmed"] %}
+<a href="/relationship?shipid={{user[0]}}&staus=1">Relationship</a> <br>
+<a href="/other_user?user={{user[1]}}">{{user[1]}}</a>
+& <a href="/other_user?user={{user[2]}}">{{user[2]}}</a>
+<!--- just a href to that user profile via username-->
+{% endfor %}
+
+{% for user in lst["pending"] %}
+<a href="/relationship?shipid={{user[0]}}&status=0">Relationship</a> <br>
+<a href="/other_user?user={{user[1]}}">{{user[1]}}</a> likes you!
+{% endfor %}
+
+{% endblock% }

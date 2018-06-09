@@ -12,6 +12,7 @@ import json
 import os
 from utils import zomato
 from utils import yelp
+from utils import database
 
 #from jinja2 import jinja2.ext.do
 
@@ -77,17 +78,52 @@ def account():
     return render_template('account.html')
 
 @app.route("/register")
-def create_acc():
+def create_acc(): #needs zip and redirect towards /auth
     return render_template("signup.html")
 
 @app.route("/login")
 def login():
-    return "WIP - check us out later ;)"
+    return render_template("login.html")
 
 @app.route("/auth")
 def auth_acc():
+    '''PSEUDO CODE
+    if (here_to_signup):
+        success = database.create_acc(user, pwd1, pwd2, zipcode)
+        if (success):
+            return redirect to home?
+        else:
+            return to signup page with prompt: "account creation unsuccessful"
+     else: #here to login
+        success = database.auth(user, pwd)
+        if (success):
+            return redirect to account page
+        else:
+            return error prompt on login page
+     '''
+
     return "WIP - check us out later ;)"
 
+@app.route("/friends")
+def friends_list():
+    '''PSUEDO CODE:
+    connections = database.check_connect(user)
+
+    #connections is a two part list
+    '''
+    
+    return render_template("friends.html") #,lst = connections)
+
+@app.route("/relationship")
+def view_relationship():
+    return render_templae("relationship.html")
+
+@app.route("/user")
+def view_user():
+    '''PSEUDO CODE:
+    relationship = database.get_relationship(user1,user2)
+    '''
+    return "idk"
 
 @app.route("/yelp_search", methods=["GET"])
 def yelp_search():

@@ -52,7 +52,7 @@ get_plan(dateid) - gets all the events listed in the date
 
 
 #below not tested
-add_image(dateid, imgfile, location) - adds image to db under appropriate event
+add_image(dateid, imgfile, place, address) - adds image to db under appropriate event
     returns T/F
 
 get_imgs(dateid)
@@ -66,7 +66,7 @@ import time
 #open database
 def open_db():
     global db
-    f = "../data/dating.db" #CHANGE BACK
+    f = "data/dating.db" #CHANGE BACK
     db = sqlite3.connect(f, check_same_thread = False)
     return db.cursor()
 
