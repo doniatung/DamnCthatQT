@@ -20,10 +20,15 @@ DateBrite is an app through which users can plan dates with their significant ot
   * requests
 
 `pip install -r requirements.txt`
+
 if this fails, run `pip install <package name>` where package name is the individual package names listed above
+
 #### Entering your virtual environment
 First, make sure you have a virtual environment installed on your computer. If you don't, instructions for that can be [found here](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/)
+
 Then...
+
 `. venv/bin/activate`
 make sure you are in the `/datebrite/` directory of the repo and run
+
 `python __init.py__`
