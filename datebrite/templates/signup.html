@@ -7,8 +7,8 @@
   }
   
   .signup {
-  margin: 0 auto;
-  width: 50%;
+  margin-left: 35%;
+  margin-right: 25%; 
   }
 </style>
 
@@ -35,56 +35,80 @@ New User Sign Up! <Br>
 </center>
   <br><br>
 
-<div class="signup"> 
-  <form action="/auth" method="post">
+
+  <form action="/auth" method="GET">
+    <div class="signup"> 
       <div class="form-row">
 
 	<div class="form-group col-md-5">
-	  <label for="inputFirstName" class="col-sm-2 control-label" name="input_FirstName">First Name</label>
+	  <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
 	  <div class="col-sm-10">
-	    <input type="text" class="form-control" id="inputFirstName" placeholder="John">
+	    <input type="text" class="form-control" name="inputFirstName" placeholder="John">
 	  </div>
 	</div>
 
 	<div class="form-group col-md-5">
-	  <label for="inputLastName" class="col-sm-2 control-label" name="input_LastName">Last Name</label>
+	  <label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
 	  <div class="col-sm-10">
-	    <input type="text" class="form-control" id="inputLastName" placeholder="Smith">
+	    <input type="text" class="form-control" name="inputLastName" placeholder="Smith">
 	  </div>
 	</div>
-	
+
+
+      <div class="form-group col-md-5">
+	  <label for="inputBDAY" class="col-sm-2 control-label">Birthday</label>
+	  <div class="col-sm-10">
+	    <input type="text" class="form-control" name="inputBDAY" placeholder="01/01/1990">
+	  </div>
+	</div>
+    </div>
+
+      <div class="form-group">
+	<label for="inputZip" class="col-sm-2 control-label">Zipcode</label>
+	<div class="col-sm-10">
+	  <input type="zipcode" class="form-control" name="inputZip" placeholder="10282">
+	</div>
       </div>
       
       <div class="form-group">
-	<label for="inputEmail" class="col-sm-2 control-label" name="input_email">Email</label>
+	<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 	<div class="col-sm-10">
-	  <input type="email" class="form-control" id="inputEmail" placeholder="johnsmith@gmail.com">
+	  <input type="email" class="form-control" name="inputEmail" placeholder="johnsmith@gmail.com">
 	</div>
       </div>
 
       <div class="form-group">
-	<label for="inputUsername" class="col-sm-2 control-label" name="input_username">Username</label>
+	<label for="inputUsername" class="col-sm-2 control-label">Username</label>
 	<div class="col-sm-10">
-	  <input type="text" class="form-control" id="inputUsername" placeholder="JohnSmith101">
+	  <input type="text" class="form-control" name="inputUsername" placeholder="JohnSmith101">
 	</div>
       </div>
 
       <div class="form-group">
-	<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+	<label for="inputPassword1" class="col-sm-2 control-label">Password</label>
 	<div class="col-sm-10">
-	  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+	  <input type="password" class="form-control" name="inputPass1" placeholder="Password">
 	</div>
       </div>
 
+      <div class="form-group">
+	<label for="inputPassword2" class="col-sm-2 control-label">Password</label>
+	<div class="col-sm-10">
+	  <input type="password" class="form-control" name="inputPass2" placeholder="Password">
+	</div>
+      </div>
+
+    </div>
+    
       <center>
       <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
-	  <button type="submit" class="btn btn-default">Sign Up</button>
+	  <button type="submit" class="btn btn-info">Sign Up</button>
 	</div>
       </div>
       </center>
     </form>
-</div>
+
 
 
 {% endblock %}

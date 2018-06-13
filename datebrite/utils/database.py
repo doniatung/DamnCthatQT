@@ -23,6 +23,9 @@ get_interest(user) - procures a tuple of all user interests
 get_users() - gets all users
     returns (T/F, list of users)
 
+get_zipcode() - gets zipcode of a certain user 
+    returns zipcode (int) 
+
 connect(origUser, otherUser) - adds the pairing of user1 and user2 into the db
     returns T/F
     BUT: user2 has to agree to be official
@@ -83,7 +86,7 @@ def setup():
     c= open_db()
     
     #acc table
-    stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, pass TEXT, zip TEXT)"
+    stmt= "CREATE TABLE IF NOT EXISTS accounts(user TEXT PRIMARY KEY, firstname TEXT, lastname TEXT, email BLOB, birthday BLOB, pass TEXT, zip TEXT)"
     c.execute(stmt)
     #user likes (are dislikes necessary?)
     stmt= "CREATE TABLE IF NOT EXISTS likes(user TEXT, like TEXT, PRIMARY KEY(user,like))"
@@ -108,7 +111,7 @@ def setup():
 
 #CREATE AN ACCOUNT
 #-------------------------------------
-def create_acc(user, pwd1, pwd2, zipcode):
+def create_acc(user, first, last, email, birthday, pwd1, pwd2, zipcode):
     global db
     try:
         user=user.strip().lower()
@@ -117,8 +120,8 @@ def create_acc(user, pwd1, pwd2, zipcode):
         obj = hashlib.sha224(pwd1)
         hash_pwd = obj.hexdigest()
 
-        command = "INSERT INTO accounts VALUES(?,?,?)"
-        c.execute(command, (user,hash_pwd,zipcode)) #try to see if user exists
+        command = "INSERT INTO accounts VALUES(?,?,?,?,?,?,?)"
+        c.execute(command, (user, first, last, email, birthday, hash_pwd, zipcode)) #try to see if user exists
         #if pwds don't match
         if pwd1 != pwd2:
             print "passwords don't match"
@@ -258,6 +261,109 @@ create_acc("notStuy", "HS", "HS", 11220)
 res = get_users()
 print res[1]
 '''
+
+#GET ZIPCODE
+#-----------------------------------------
+def get_zipcode(username):
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT * FROM accounts"
+        res = c.execute(command)
+        users = []
+        for user in res:
+            if user[0] == username:
+                return user[7]
+        close_db()
+
+    except:
+        return "Could not access zipcode"
+
+#get_zipcode("abc123") 
+#==========================================
+
+#GET FIRSTNAME
+#-----------------------------------------
+def get_firstname(username):
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT * FROM accounts"
+        res = c.execute(command)
+        users = []
+        for user in res:
+            if user[0] == username:
+                return user[1]
+        close_db()
+
+    except:
+        return "Could not access firstname"
+
+#==========================================
+
+#GET LASTNAME
+#-----------------------------------------
+def get_lastname(username):
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT * FROM accounts"
+        res = c.execute(command)
+        users = []
+        for user in res:
+            print user
+            print user[2]
+            if user[0] == username:
+                return user[2]
+        close_db()
+
+    except:
+        return "Could not access lastname"
+
+#==========================================
+
+#GET EMAIL
+#-----------------------------------------
+def get_email(username):
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT * FROM accounts"
+        res = c.execute(command)
+        users = []
+        for user in res:
+            if user[0] == username:
+                return user[3]
+        close_db()
+
+    except:
+        return "Could not access email"
+
+#==========================================
+
+#GET BIRTHDAY
+#-----------------------------------------
+def get_birthday(username):
+    global db
+    try:
+        c = open_db()
+
+        command = "SELECT * FROM accounts"
+        res = c.execute(command)
+        users = []
+        for user in res:
+            if user[0] == username:
+                return user[4]
+        close_db()
+
+    except:
+        return "Could not access birthday" 
+#==========================================
+
 
 #CONNECT USERS (USER1 initiates connection)
 #------------------------------------------
@@ -483,7 +589,6 @@ def get_imgs(dateid):
     global db
     try:
         c= open_db()
-
         command = "SELECT * FROM imgs WHERE dateid=?"
         res= c.execute(command, (dateid,))
         imgs = []

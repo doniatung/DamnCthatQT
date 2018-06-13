@@ -16,7 +16,8 @@ from utils import database
 
 #from jinja2 import jinja2.ext.do
 
-d = {} 
+d = {}
+current_user = ""
 
 #App instantiation
 app = Flask(__name__)
@@ -27,36 +28,40 @@ app.secret_key = os.urandom(32)
 def welcome():
     return render_template('index.html')
 
-@app.route("/login_redirect")
+@app.route("/login_redirect", methods=['GET'])
 def login_redirect():
         #If logout:
         if "submit" in request.args and request.args["submit"] == "Logout":
-		session["username"] = ""
+		session["username"] = None
 		flash("You logged out.")
                 return redirect("/")
 
         #If logged in:
         if "username" in request.args and session.get('username'):
-                return redirect("/")
+            return redirect("/")
 
         username = ""
         password = ""
 
         #Grabbing user info:
-        if "user" in request.args and "pass" in request.args:
-		username = request.args["user"].lower()
-		password = request.args["pass"]
+        args = request.args 
+        if "username" in args and "password" in args:
+		username = request.args["username"].lower()
+		password = request.args["password"]
+
+                print "\n DETECTED"
+                print username
+                print password
 
         #If not correct login info:
-        '''
-        if not database.verify_user(username, password):
+        if not database.auth(username, password):
                 error = "Incorrect information. Please try again."
-                return render_template("error.html", error=error)
+                return render_template("error.html", message=error)
         else:
               session["username"] = username
 	      return redirect("/")
 
-        '''
+
         return redirect("/")
 
 
@@ -75,34 +80,59 @@ def view():
 
 @app.route('/account')
 def account():
-    return render_template('account.html')
+    if session.get("username") == None:
+        return redirect("/login")
 
-@app.route("/register")
-def create_acc(): #needs zip and redirect towards /auth
+    else:
+        user = session.get("username") 
+        firstname = database.get_firstname(user)
+        lastname = database.get_lastname(user)
+        email = database.get_email(user)
+        zipcode = database.get_zipcode(user)
+        birthday = database.get_birthday(user)
+        print user
+        print firstname
+        print lastname
+        print email
+        print zipcode
+        print birthday
+        
+        return render_template("account.html", first=firstname, last=lastname, username=user, email=email, zipcode=zipcode, birthday=birthday) 
+               
+@app.route("/register", methods=['GET', 'POST'])
+def create_acc():
     return render_template("signup.html")
 
 @app.route("/login")
 def login():
     return render_template("login.html")
 
-@app.route("/auth")
+@app.route("/auth", methods=['GET'])
 def auth_acc():
-    '''PSEUDO CODE
-    if (here_to_signup):
-        success = database.create_acc(user, pwd1, pwd2, zipcode)
-        if (success):
-            return redirect to home?
-        else:
-            return to signup page with prompt: "account creation unsuccessful"
-     else: #here to login
-        success = database.auth(user, pwd)
-        if (success):
-            return redirect to account page
-        else:
-            return error prompt on login page
-     '''
+    args = request.args
+    first = args["inputFirstName"]
+    last = args["inputLastName"]
+    bday = args["inputBDAY"]
+    email = args["inputEmail"] 
+    user = args["inputUsername"]
+    pwd1 = args["inputPass1"]
+    pwd2 = args["inputPass2"]
+    zipcode = args["inputZip"]
 
-    return "WIP - check us out later ;)"
+    #print user
+    #print pwd1
+    #print pwd2
+    #print zipcode
+    
+    success = database.create_acc(user, first, last, email, bday, pwd1, pwd2, zipcode)
+    if (success):
+        session["username"] = user
+        return redirect("/")
+    
+    else:
+        error="Unable to create your account at this time. Please try again."
+        return render_template("error.html", message=error) 
+     
 
 @app.route("/friends")
 def friends_list():
@@ -141,8 +171,10 @@ def yelp_results():
     if "home" in args: 
         use_home_address = args["home"]
         if use_home_address == "true":
-            location = '''RETRIEVE HOME ADDRESS'''
-
+            #print "GETTING HOME ZIP"
+            #print session.get("username") 
+            location = database.get_zipcode(session.get("username"))
+            #print location
     data = yelp.search(term, location, search_limit, sort_by, price)
 
     #print data 
@@ -159,53 +191,6 @@ def yelp_results():
         
     return render_template("yelp_results.html", data = businesses, search_limit=search_limit) 
     
-#ZOMATO STUFF#
-@app.route("/restaurant_search", methods=["GET"])
-def rest_search():
-    return render_template("zomato.html")
-
-@app.route("/restaurant_results", methods=["GET"])
-def restaurant_results():
-    args = request.args
-
-    if args['cuisines']:
-        cuisines = args['cuisines'].split(',')
-    else:
-        cuisines = []
-
-    try:
-        sort = args['sort']
-    except KeyError:
-        sort = 'rating'
-    try:
-        order = args['order']
-    except KeyError:
-        order = 'desc'
-
-    '''
-    if args['query'] or args['max_amt'] or len(cuisines) == 0:
-        print args['query']
-        print args['max_amt']
-        print len(cuisines)
-
-        return render_template("error.html", message="Incorrect inputs or missing inputs, please try again")
-
-    '''
-
-    data = zomato.restaurant_search(args['query'],
-                    args['location'],
-                    args['radius'],
-                    args['max_amt'],
-                    cuisines,
-                    sort,
-                    order)
-
-    print data
-
-    return render_template("zomato_results.html",
-                           rests = data['restaurants'],
-                           num = data['results_shown'])
-
 
 if __name__ == "__main__":
     #when we change to lamp stack, change debug to False

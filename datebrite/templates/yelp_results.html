@@ -73,12 +73,15 @@ Restaurant Results
                   <p><b>Rating</b><br>
 		    {{ business["rating"] }} ({{business["review_count"]}} ratings)
 		  </p>
+
+		  <p><b>Distance from address entered</b>
+		    {{business["distance"]}}
+		  </p>
 		  
 		</div>
 	      </div>
 	    </div>
-
-            {% endfor %}
+	    {% endfor %}
 
           </center>
           <br>
@@ -86,7 +89,8 @@ Restaurant Results
         </div>
       </div>
     </div>
-  </div>
+</div>
+
 
   <hr class="featurette-divider">
 
@@ -97,4 +101,6 @@ Restaurant Results
         Back
     </a>
 </div>
+
 {% endblock %}
+
