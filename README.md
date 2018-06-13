@@ -5,7 +5,9 @@ Team Members: Donia Tung (Project Manager), Carol Pan, Taylor Wong, Queenie Xian
 SoftDev2 Pd 7
 
 To Run, you should be able to simply [click here](http://datebrite.stuycs.org)
+
 [Video!](https://youtu.be/xY3uT0df1oA)
+
 proto0 is now [proto1](http://165.227.71.95/)
 
 ### Brief Overview: 
