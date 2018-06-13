@@ -5,7 +5,7 @@ Team Members: Donia Tung (Project Manager), Carol Pan, Taylor Wong, Queenie Xian
 SoftDev2 Pd 7
 
 To Run, you should be able to simply [click here] (http://datebrite.stuycs.org)
-(Video!) [https://youtu.be/xY3uT0df1oA]
+[Video!] (https://youtu.be/xY3uT0df1oA)
 proto0 is now [proto1](http://165.227.71.95/)
 
 ### Brief Overview: 
@@ -20,7 +20,7 @@ DateBrite is an app through which users can plan dates with their significant ot
 `pip install -r requirements.txt`
 if this fails, run `pip install <package name>` where package name is the individual package names listed above
 #### Entering your virtual environment
-First, make sure you have a virtual environment installed on your computer. If you don't, instructions for that can be (found here)[https://packaging.python.org/guides/installing-using-pip-and-virtualenv/]
+First, make sure you have a virtual environment installed on your computer. If you don't, instructions for that can be [found here](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/)
 Then...
 `. venv/bin/activate`
 make sure you are in the `/datebrite/` directory of the repo and run
