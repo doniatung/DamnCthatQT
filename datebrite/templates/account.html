@@ -5,7 +5,30 @@
 {% endblock %}
 
 {% block title %}
-My Account
+{{username}}
+{% endblock %}
+
+{% block loggedin %}
+
+<li class="nav-item">
+  <a class="nav-link" href="/yelp_search" id="light">Search</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/friends" id="light">Friends</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#" id="light">Dates</a>
+</li>	  
+
+{% endblock %}
+
+
+{% block navbar %}
+
+<a href="/account" class="btn btn-outline-light pull-left" aria-label="My Account" id='button1'>
+  <span class="oi oi-person" title="My Account" aria-hidden="true" id='dark'></span> My Account
+</a>
+
 {% endblock %}
 
 {% block content %}
@@ -23,10 +46,17 @@ My Account
       <img class="rounded-circle" src="../static/images/team/q.jpg" alt="pfp" width="140" height="140">
       <br><br>
       <h1 id='dark'>{{first}} {{last}}</h1><br>
-
+      
       <div class="container">
         <div class="card-deck text-center" style='width: 300px;'>
           <div class="card mb-4 box-shadow" style='position: right;'>
+	    <div class="card-header">
+	      {% if rel %}
+	      <b> {{rel}} </b>. idk
+	      {% else %}
+	      <b> Not Friends Yet </b>. <a href="/connect?user={{username}}"> add them? </a>
+	      {% endif %}
+            </div>
             <div class="card-header">
               <b>Username:</b> @{{username}}
             </div>

@@ -61,6 +61,7 @@
   </head>
 
   <body>
+    
     <!-- navbar -->
     <nav class="navbar navbar-expand-md navbar-light fixed-top" style='background-color: rgba(255, 255, 255, 0.9); height: 50px; border-color: rgba(211, 211, 211, 0.95); box-shadow: 1px 1px 1px rgba(192,192,192,0.5);'> <!-- #ffe700  rgba(255, 182, 193, 1)-->
       <a class="navbar-brand" href="/" id='dark'>DamnCthatQT</a>
@@ -77,15 +78,14 @@
         </ul>
 
         <ul class="navbar-nav pull-left">
-          <li class="nav-item">
-            <a class="nav-link" href="/browse" id='light'>Browse Events</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/yelp_search" id="light">Search</a>
-          </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="/browse" id='light'>Browse Events</a>
+	  </li>
           <li class="nav-item">
             <a class="nav-link" href="/about" id="light">About Us</a>
           </li>
+	  {% block loggedin %}
+	  {% endblock %}
           <li style='color: white;'> hi</li> <!-- for spacing -->
 
 	  {% block navbar %}

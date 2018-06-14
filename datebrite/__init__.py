@@ -26,13 +26,17 @@ app.secret_key = os.urandom(32)
 
 @app.route("/")
 def welcome():
-    return render_template('index.html')
+    if "username" in session:
+        return render_template('index.html', logged = True)
+    else:
+        return render_template('index.html', logged = False)
 
 @app.route("/login_redirect", methods=['GET'])
 def login_redirect():
         #If logout:
         if "submit" in request.args and request.args["submit"] == "Logout":
-		session["username"] = None
+		session.pop("username")
+                session.pop("zipcode")
 		flash("You logged out.")
                 return redirect("/")
 
@@ -59,6 +63,7 @@ def login_redirect():
                 return render_template("error.html", message=error)
         else:
               session["username"] = username
+              session["zipcode"] = database.get_user(username)[6]
 	      return redirect("/")
 
 
@@ -67,11 +72,17 @@ def login_redirect():
 
 @app.route('/browse')
 def browse():
-    return render_template('browse.html')
+    if "username" in session:
+        return render_template('browse.html', logged = True)
+    else:
+        return render_template('browse.html', logged = False)
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+     if "username" in session:
+        return render_template('about.html', logged = True)
+     else:
+        return render_template('about.html', logged = False)
 
 @app.route('/view')
 def view():
@@ -80,16 +91,17 @@ def view():
 
 @app.route('/account')
 def account():
-    if session.get("username") == None:
+    if not "username" in session:
         return redirect("/login")
-
     else:
-        user = session.get("username") 
-        firstname = database.get_firstname(user)
-        lastname = database.get_lastname(user)
-        email = database.get_email(user)
-        zipcode = database.get_zipcode(user)
-        birthday = database.get_birthday(user)
+        user = session.get("username")
+        data = database.get_user(user)
+        print data
+        firstname = data[1]
+        lastname = data[2]
+        email = data[3]
+        zipcode = data[6]
+        birthday = data[4]
         print user
         print firstname
         print lastname
@@ -136,28 +148,58 @@ def auth_acc():
 
 @app.route("/friends")
 def friends_list():
-    '''PSUEDO CODE:
+    user = session["username"]
     connections = database.check_connect(user)
-
+    print connections
+    users = database.get_users()
     #connections is a two part list
-    '''
+    print users
     
-    return render_template("friends.html") #,lst = connections)
+    return render_template("friends.html",lst = connections, users = users)
 
 @app.route("/relationship")
 def view_relationship():
     return render_templae("relationship.html")
 
-@app.route("/user")
+@app.route("/other_user")
 def view_user():
-    '''PSEUDO CODE:
-    relationship = database.get_relationship(user1,user2)
-    '''
-    return "idk"
+        user = request.args["user"]
+        data = database.get_user(user)
+        print data
+        firstname = data[1]
+        lastname = data[2]
+        email = data[3]
+        zipcode = data[6]
+        birthday = data[4]
+        print user
+        print firstname
+        print lastname
+        print email
+        print zipcode
+        print birthday
+
+        rel = database.get_relationship(session["username"], user)
+        
+        return render_template("account.html", first=firstname, last=lastname, username=user, email=email, zipcode=zipcode, birthday=birthday, rel = rel)
+
+@app.route("/connect")
+def connect():
+    database.connect(session["username"], request.args["user"])
+    return redirect("/view_user", user=request.args[user])
+
+@app.route("/confirm")
+def confirm():
+    ship = request.args["shipid"]
+    value = request.args["value"]
+    database.respond(ship,value)
+    return redirect("/friends")
 
 @app.route("/yelp_search", methods=["GET"])
 def yelp_search():
-    return render_template("yelp.html")
+     if "username" in session:
+        return render_template('yelp.html', logged = True)
+     else:
+        return render_template('yelp.html', logged = False)
 
 @app.route("/yelp_results", methods=["GET"])
 def yelp_results():
