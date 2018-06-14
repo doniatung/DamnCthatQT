@@ -18,6 +18,14 @@
 Welcome!
 {% endblock %}
 
+{% block navbar %}
+{% if {{logged}} %}
+<a href="/account" class="btn btn-outline-light pull-left" aria-label="My Account" id='button1'>
+  <span class="oi oi-person" title="My Account" aria-hidden="true" id='dark'></span> My Account
+
+{% endif %}
+</a>
+{% endblock %}
 
 {% block content %}
 <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
