@@ -22,22 +22,22 @@ My Account
       <br><br>
       <img class="rounded-circle" src="../static/images/team/q.jpg" alt="pfp" width="140" height="140">
       <br><br>
-      <h1 id='dark'>Queenie Xiang {{name}}</h1><br>
+      <h1 id='dark'>{{first}} {{last}}</h1><br>
 
       <div class="container">
         <div class="card-deck text-center" style='width: 300px;'>
           <div class="card mb-4 box-shadow" style='position: right;'>
             <div class="card-header">
-              <b>Username:</b> @qxiang {{username}}
+              <b>Username:</b> @{{username}}
             </div>
             <div class="card-header">
-              <b>Age:</b> 17 years old
+              <b>Birthday:</b> {{birthday}}
             </div>
             <div class="card-header">
-              <b>Date Joined:</b> 04/07/2018 {{date_joined}}
+              <b>Email:</b> {{email}}
             </div>
             <div class="card-header">
-              <b>Zip Code:</b> 10282 {{zipcode}}
+              <b>Zip Code:</b> {{zipcode}}
             </div>
           </div>
         </div>
@@ -158,6 +158,8 @@ My Account
       </div>
 
 
+      <form action="/login_redirect">
+	<button type="submit" name="submit" value="Logout" class="btn btn-info">Sign Out</button>
   </center>
 
 
